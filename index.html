@@ -389,6 +389,53 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .res-box h4{margin:6px 0 4px;font:700 22px var(--fd);color:var(--ti)}
 .res-box p{margin:0;font:600 14px/1.5 var(--fb);color:var(--ink)}
 
+/* ===== css: 70-pantallas.css ===== */
+/* Pantallas: iPhone 18 Pro y iPhone Duo (exterior e interior), en vertical y horizontal.
+   58-pantalla.js pone en <html>: data-dev=pro|duo, data-form=pro|ext|int, data-ori=p|l. */
+:root{--rail:76px;--colw:300px}
+nav{bottom:var(--trim,0px)}
+main{padding-bottom:calc(var(--tab,68px) + env(safe-area-inset-bottom,0px) + 28px + max(var(--trim,0px),0px))}
+.trim{display:flex;align-items:center;gap:8px}
+.trim b{min-width:48px;text-align:center;font:600 14px var(--fd)}
+.trim .pill{min-width:40px;padding:8px 0}
+
+/* alturas cortas (Duo cerrado en vertical: 678 pt): cabecera más compacta */
+@media (max-height:720px) and (orientation:portrait){
+  header{padding:8px 14px 6px}.brand{margin-bottom:6px}
+  .strip button{padding:6px 12px}
+  nav button{padding:6px 0 5px}}
+
+/* HORIZONTAL (iPhone y Duo exterior o interior): barra de pestañas en un lateral, cabecera en una sola fila */
+html[data-ori=l] .app{max-width:none;padding-left:calc(var(--rail) + env(safe-area-inset-left,0px));padding-right:env(safe-area-inset-right,0px)}
+html[data-ori=l] nav{top:0;bottom:var(--trim,0px);left:0;right:auto;width:calc(var(--rail) + env(safe-area-inset-left,0px));max-width:none;margin:0;
+  flex-direction:column;justify-content:center;border-top:0;border-right:2.5px solid var(--line);
+  padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+html[data-ori=l] nav button{flex:0 0 auto;padding:11px 0}
+html[data-ori=l] main{padding-bottom:28px}
+html[data-ori=l] header{display:flex;align-items:center;gap:16px;padding:8px 14px 6px}
+html[data-ori=l] .brand{margin:0;flex:0 0 232px}
+html[data-ori=l] .strip{flex:1;min-width:0;padding:2px 1px}
+html[data-ori=l] .toast{left:calc(50% + var(--rail) / 2)}
+html[data-form=ext][data-ori=l]{--rail:68px;--colw:276px}
+
+/* PANTALLA INTERIOR del Duo en vertical: ancho completo y barra inferior a todo el ancho */
+html[data-form=int][data-ori=p] .app{max-width:none}
+html[data-form=int][data-ori=p] nav{max-width:none}
+
+/* tarjetas en columnas cuando hay ancho (horizontal o pantalla interior); las que van a todo el ancho se marcan abajo */
+html[data-ori=l] main>section:not([hidden]),html[data-form=int] main>section:not([hidden]){column-width:var(--colw);column-gap:14px}
+html[data-ori=l] main>section>*,html[data-form=int] main>section>*{break-inside:avoid}
+html[data-ori=l] #c-res,html[data-form=int] #c-res,html[data-ori=l] .catgrid,html[data-form=int] .catgrid{column-span:all}
+html[data-form=int] main{padding-left:20px;padding-right:20px}
+
+/* ===== css: 71-orden.css ===== */
+/* Arrastrar y reordenar las tarjetas de Inicio (61-orden.js). */
+#t-inicio>*{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+#t-inicio input,#t-inicio textarea{-webkit-user-select:text;user-select:text}
+body.ord-on,body.ord-on *{-webkit-user-select:none;user-select:none;cursor:grabbing}
+.ord-ph{border:2.5px dashed var(--ink3);border-radius:20px;margin-bottom:16px;background:var(--soft);opacity:.7;break-inside:avoid}
+.ord-drag{transform:scale(1.02) rotate(.6deg);box-shadow:0 18px 40px rgba(20,30,25,.28);opacity:.96;transition:transform .12s}
+
 </style>
 </head>
 <body>
@@ -566,7 +613,7 @@ const defWeek=i=>{const ws=weeks(i);const k=ws.findIndex(w=>{const[a,b]=lim(i,w)
 /* ===== js: 20-estado.js ===== */
 /* Estado de la app y persistencia (localStorage + base de datos del artefacto). */
 const mk12=()=>Array.from({length:12},()=>[]);
-const DEF={v:2,R:"R1",irpf:15,ss:6.55,irpfR:16,fact:1.5,sabFest:true,
+const DEF={v:2,R:"R1",irpf:15,ss:6.55,irpfR:16,fact:1.5,sabFest:true,orden:{},
   base:CONV.base,capt:CONV.capt,prorr:NOM.prorr,pvacPct:CONV.pvacPct,extra:CONV.extra,
   ahorroPct:40,cat:{surv:50,ocio:25,cult:10,extra:15},
   on:SUBS.map(()=>true),tur:turIni(),cob:Array(12).fill(null),
@@ -588,6 +635,7 @@ function migrate(x){
   for(let i=0;i<12;i++)if(!Array.isArray(b.tur[i]))b.tur[i]=[];
   if(!b.refl||Array.isArray(b.refl))b.refl={};
   if(!b.cat||typeof b.cat!=="object")b.cat=clone(DEF.cat);
+  if(!b.orden||typeof b.orden!=="object"||Array.isArray(b.orden))b.orden={};
   b.sync=Object.assign(clone(DEF.sync),b.sync&&typeof b.sync==="object"?b.sync:{});
   b.sync.cal=Object.assign({},DEF.sync.cal,b.sync.cal||{});
   if(!Array.isArray(b.sync.ign))b.sync.ign=[];
@@ -1385,6 +1433,54 @@ Object.assign(A,{
     if(!cpArm){cpArm=true;const keep=raw;refresh();const t2=$("cpTxt");if(t2)t2.value=keep;return}
     st=migrate(o);save();cpMsg={tone:"mint",text:"Copia restaurada."};cpArm=false;refresh();toast("Copia restaurada")}
 });
+/* ===== js: 58-pantalla.js ===== */
+/* Pantalla del dispositivo: iPhone 18 Pro o iPhone Duo (exterior e interior, en vertical y horizontal).
+   Medidas del Duo (las mismas que en HOIST): exterior 466x678 pt, interior 951x669 pt.
+   Esto solo pone etiquetas en <html>; el aspecto está en css/70-pantallas.css:
+     data-dev="pro|duo"   data-form="pro|ext|int"   data-ori="p|l" (vertical | horizontal)
+   La elección se guarda en ESTE dispositivo (cada aparato tiene su pantalla), no en los datos compartidos. */
+addCard("ajustes",{id:"c-screen",tone:"mint"},"c-theme");
+
+const SCR_KEY="kakebo-screen";
+let scr={dev:"pro",ajB:0,ajD:0};
+try{Object.assign(scr,JSON.parse(localStorage.getItem(SCR_KEY)||"{}"))}catch(e){}
+if(scr.dev!=="duo")scr.dev="pro";
+const scrSave=()=>{try{localStorage.setItem(SCR_KEY,JSON.stringify(scr))}catch(e){}};
+const scrTrim=()=>(scr.dev==="duo"?scr.ajD:scr.ajB)||0;
+
+function scrInfo(){
+  const w=window.innerWidth,h=window.innerHeight,min=Math.min(w,h);
+  /* el Duo abierto mide más de 600 pt por su lado corto; cerrado, menos */
+  return{w,h,ori:w>h?"l":"p",form:scr.dev==="duo"?(min>=600?"int":"ext"):"pro"}}
+function scrDesc(){const i=scrInfo();
+  const f={pro:"",ext:" · pantalla exterior",int:" · pantalla interior"}[i.form];
+  return(scr.dev==="duo"?"iPhone Duo":"iPhone 18 Pro")+f+" · "+(i.ori==="l"?"horizontal":"vertical")+" · "+i.w+"×"+i.h+" pt"}
+function scrApply(){
+  const i=scrInfo(),r=document.documentElement;
+  r.dataset.dev=scr.dev;r.dataset.form=i.form;r.dataset.ori=i.ori;
+  r.style.setProperty("--trim",scrTrim()+"px");
+  const el=document.getElementById("scrNow");if(el)el.textContent=scrDesc()}
+scrApply();
+let scrRaf=0;
+const scrSoon=()=>{cancelAnimationFrame(scrRaf);scrRaf=requestAnimationFrame(scrApply)};
+window.addEventListener("resize",scrSoon);window.addEventListener("orientationchange",scrSoon);
+if(window.visualViewport)window.visualViewport.addEventListener("resize",scrSoon);
+
+R["c-screen"]=()=>{const seg=(v,t)=>`<button data-a="scrdev" data-v="${v}" aria-pressed="${scr.dev===v}">${t}</button>`;
+  return band("mint","gear","Pantalla")+`<div class="body">
+  <div class="seg">${seg("pro","iPhone 18 Pro")}${seg("duo","iPhone Duo")}</div>
+  <p class="hint" id="scrNow" style="margin-top:12px">${scrDesc()}</p>
+  <div class="row" style="border:0;padding:12px 0 0"><span class="tx"><span class="nm">Ajuste del borde inferior</span><span class="mt">si la barra de abajo se corta o flota</span></span>
+    <span class="trim"><button class="pill" data-a="scrtrim" data-v="-5" data-nr="1" aria-label="Bajar 5 puntos">−</button><b id="scrTv">${scrTrim()} pt</b>
+    <button class="pill" data-a="scrtrim" data-v="5" data-nr="1" aria-label="Subir 5 puntos">+</button></span></div>
+  <p class="hint">Con el Duo, la app se adapta sola al abrirlo o cerrarlo y al girarlo. En Inicio, mantén pulsada una tarjeta y arrástrala para reordenarlas.</p>
+  <button class="pill" data-a="ordreset" style="width:100%;margin-top:10px">Restablecer el orden de Inicio</button></div>`};
+
+Object.assign(A,{
+  scrdev:b=>{scr.dev=b.dataset.v==="duo"?"duo":"pro";scrSave();scrApply()},
+  scrtrim:b=>{const k=scr.dev==="duo"?"ajD":"ajB";scr[k]=Math.max(-40,Math.min(120,(scr[k]||0)+ +b.dataset.v));scrSave();scrApply();
+    const t=$("scrTv");if(t)t.textContent=scrTrim()+" pt"}
+});
 /* ===== js: 59-github.js ===== */
 /* Solo en la versión de GitHub Pages: guarda tu presupuesto en tu repo privado (presupuesto.json) y lo lee al abrir.
    El token vive solo en este dispositivo. Si dos dispositivos cambian a la vez, gana el cambio más reciente. */
@@ -1447,7 +1543,7 @@ onReady(()=>{
   if(gh)ghSync()});
 
 /* ---------- pantalla ---------- */
-addCard("ajustes",{id:"c-gh",tone:"lav"},"c-theme");
+addCard("ajustes",{id:"c-gh",tone:"lav"},"c-screen");
 
 R["c-gh"]=()=>{
   const tag=!gh?"sin conectar":ghBusy?"sincronizando":ghLast?timeAgo(ghLast):"conectado";
@@ -1526,6 +1622,94 @@ Object.assign(A,{
   wpick:b=>{wiz.hist.push(wiz.step);wiz.step=b.dataset.v;renderSheet()},
   wback:()=>{wiz.step=wiz.hist.pop()||"amt";renderSheet()},
   wreset:()=>{wiz={step:"amt",amt:wiz.amt,c:wiz.c,hist:[]};renderSheet()}
+});
+/* ===== js: 61-orden.js ===== */
+/* Reordenar las tarjetas de Inicio: mantén pulsada una tarjeta (medio segundo) y arrástrala.
+   El orden se guarda en los datos (st.orden.inicio) y se recuerda en todos los dispositivos.
+   Funciona con el dedo (iPhone) y con el ratón. Mientras arrastras, un hueco punteado marca dónde caerá. */
+const ORD_TABS=["inicio"], ORD_HOLD=450, ORD_SLOP=8;
+let ordDrag=null, ordHold=null, ordNoClick=0, ordLastTouch=0, ordRaf=0;
+
+const ORD_ORIG={};   /* orden de registro original: se captura en la primera pasada, antes de reordenar nada */
+const ordBase=tid=>ORD_ORIG[tid]||(ORD_ORIG[tid]=TABS.find(t=>t.id===tid).cards.map(c=>c.id));
+function ordWanted(tid){
+  const base=ordBase(tid),saved=(st.orden&&Array.isArray(st.orden[tid])?st.orden[tid]:[]).filter(id=>base.includes(id));
+  return saved.concat(base.filter(id=>!saved.includes(id)))}
+/* pone el DOM en el orden guardado (también tras cargar datos de GitHub o restaurar una copia) */
+function ordSync(){
+  if(ordDrag)return;
+  ORD_TABS.forEach(tid=>{const sec=$("t-"+tid),t=TABS.find(x=>x.id===tid);if(!sec||!t)return;
+    const want=ordWanted(tid),have=[...sec.children].map(e=>e.id).filter(id=>want.includes(id));
+    if(want.join()!==have.join())want.forEach(id=>{const el=$(id);if(el)sec.appendChild(el)});
+    t.cards.sort((a,b)=>want.indexOf(a.id)-want.indexOf(b.id))})}
+const ordRefresh=refresh;
+refresh=function(except){ordSync();ordRefresh(except)};
+onReady(ordSync);
+
+const ordPt=e=>{const t=(e.touches&&e.touches[0])||(e.changedTouches&&e.changedTouches[0])||e;return{x:t.clientX,y:t.clientY}};
+const ordCard=el=>{const c=el&&el.closest&&el.closest("section:not([hidden]) > *");
+  return c&&c.parentElement&&ORD_TABS.some(t=>c.parentElement.id==="t-"+t)&&c.id?c:null};
+
+function ordStart(card,x,y){
+  const sec=card.parentElement,r=card.getBoundingClientRect(),ph=document.createElement("div");
+  ph.className="ord-ph";ph.style.height=r.height+"px";sec.insertBefore(ph,card);
+  ordDrag={card,sec,ph,dx:x-r.left,dy:y-r.top,x,y,css:card.style.cssText};
+  card.classList.add("ord-drag");
+  card.style.cssText+=";position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;margin:0;z-index:55;pointer-events:none";
+  document.body.classList.add("ord-on");
+  try{if(navigator.vibrate)navigator.vibrate(12)}catch(e){}
+  ordLoop()}
+function ordPlace(){
+  const d=ordDrag;if(!d)return;
+  d.card.style.left=(d.x-d.dx)+"px";d.card.style.top=(d.y-d.dy)+"px";
+  /* ¿encima de qué tarjeta está el dedo? el hueco se coloca antes o después según la mitad */
+  for(const el of d.sec.children){
+    if(el===d.card||el===d.ph)continue;const r=el.getBoundingClientRect();
+    if(d.x<r.left||d.x>r.right||d.y<r.top||d.y>r.bottom)continue;
+    const before=d.y<r.top+r.height/2;
+    const ref=before?el:el.nextSibling;
+    if(ref!==d.ph&&!(ref&&ref.previousSibling===d.ph&&!before))d.sec.insertBefore(d.ph,ref);
+    break}}
+function ordLoop(){
+  cancelAnimationFrame(ordRaf);
+  const step=()=>{const d=ordDrag;if(!d)return;
+    const edge=90,v=d.y<edge?-(edge-d.y)/6:d.y>innerHeight-edge?(d.y-(innerHeight-edge))/6:0;
+    if(v)window.scrollBy(0,Math.max(-18,Math.min(18,v)));
+    ordPlace();ordRaf=requestAnimationFrame(step)};
+  ordRaf=requestAnimationFrame(step)}
+function ordEnd(){
+  const d=ordDrag;if(!d)return;ordDrag=null;cancelAnimationFrame(ordRaf);
+  d.sec.insertBefore(d.card,d.ph);d.ph.remove();
+  d.card.classList.remove("ord-drag");d.card.style.cssText=d.css;
+  document.body.classList.remove("ord-on");
+  const tid=d.sec.id.replace(/^t-/,"");
+  st.orden=Object.assign({},st.orden,{[tid]:[...d.sec.children].map(e=>e.id).filter(id=>ordBase(tid).includes(id))});
+  ordNoClick=Date.now()+500;ordSync();queue()}
+
+function ordDown(e){
+  if(e.type==="mousedown"&&(e.button!==0||Date.now()-ordLastTouch<700))return;
+  if(e.type==="touchstart")ordLastTouch=Date.now();
+  const card=ordCard(e.target);if(!card||ordDrag)return;
+  if(e.target.closest("input,textarea,select"))return;                 /* en un campo se escribe, no se arrastra */
+  const p=ordPt(e);clearTimeout(ordHold&&ordHold.t);
+  ordHold={card,x:p.x,y:p.y,t:setTimeout(()=>{const h=ordHold;ordHold=null;if(h)ordStart(h.card,h.x,h.y)},ORD_HOLD)}}
+function ordMove(e){
+  const p=ordPt(e);
+  if(ordHold&&Math.hypot(p.x-ordHold.x,p.y-ordHold.y)>ORD_SLOP){clearTimeout(ordHold.t);ordHold=null}   /* es un desplazamiento normal */
+  if(ordDrag){ordDrag.x=p.x;ordDrag.y=p.y;if(e.cancelable)e.preventDefault();ordPlace()}}
+function ordUp(e){
+  if(e.type==="touchend"||e.type==="touchcancel")ordLastTouch=Date.now();
+  if(ordHold){clearTimeout(ordHold.t);ordHold=null}
+  if(ordDrag)ordEnd()}
+document.addEventListener("touchstart",ordDown,{passive:true});
+document.addEventListener("touchmove",ordMove,{passive:false});
+document.addEventListener("touchend",ordUp);document.addEventListener("touchcancel",ordUp);
+document.addEventListener("mousedown",ordDown);document.addEventListener("mousemove",ordMove);document.addEventListener("mouseup",ordUp);
+document.addEventListener("click",e=>{if(Date.now()<ordNoClick){e.stopPropagation();e.preventDefault()}},true);   /* soltar tras arrastrar no pulsa botones */
+document.addEventListener("contextmenu",e=>{if(ordHold||ordDrag)e.preventDefault()});
+
+Object.assign(A,{
+  ordreset:()=>{st.orden={};ordSync();toast("Orden de Inicio restablecido")}
 });
 /* ===== js: 90-arranque.js ===== */
 /* Arranque: monta la estructura, pinta y carga los datos guardados. */
