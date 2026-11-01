@@ -1289,22 +1289,26 @@ Object.assign(A,{
 addCard("ajustes",{id:"c-sync",tone:"blue"},"end");     /* Ajustes, abajo del todo */
 addCard("turnos",{id:"c-agenda",tone:"mint"},"c-cal");
 
+/* Origen de los datos. En claude.ai es el conector; en la web de GitHub, un agenda.json que genera una Action (62-agenda.js). */
+let syncAvail=()=>typeof claude!=="undefined";
+let syncNote=()=>"Abre la app desde claude.ai para conectar el calendario.";
+let syncHow=()=>"";
 let syncing=false, syncMsg=null;   /* syncMsg: {tone:"mint"|"yel"|"red", text, perm?} */
 
 const timeAgo=ts=>{const m=Math.round((Date.now()-ts)/6e4);
   if(m<1)return "ahora mismo";if(m<60)return "hace "+m+" min";
   const h=Math.round(m/60);if(h<24)return "hace "+h+" h";const d=Math.round(h/24);return "hace "+d+(d===1?" día":" días")};
 
-R["c-sync"]=()=>{const s=st.sync,rep=s.rep,avail=typeof claude!=="undefined";
+R["c-sync"]=()=>{const s=st.sync,rep=s.rep,avail=syncAvail();
   const tag=syncing?"sincronizando":(s.last?timeAgo(s.last):"sin sincronizar");
   const opt=(v,t)=>`<option value="${v}"${s.freq===v?" selected":""}>${t}</option>`;
   const cls={red:"err",yel:"warnmsg",mint:"okmsg"};
   return band("blue","cal","Google Calendar",tag)+`<div class="body">
-  <p class="hint" style="margin-top:0">Lee tus calendarios de Guardia, Atención Continuada, Chiquiguardia y Doblajes y los convierte en turnos para la nómina. CAP, Citas y Cursos se muestran en la agenda.</p>
+  <p class="hint" style="margin-top:0">Lee tus calendarios de Guardia, Atención Continuada, Chiquiguardia y Doblajes y los convierte en turnos para la nómina. CAP, Citas y Cursos se muestran en la agenda.${syncHow()}</p>
   ${rep?`<div class="kv" style="margin:10px 0"><div><span class="l">Turnos del calendario</span><span class="v">${s.n}</span></div>
     <div><span class="l">Última pasada</span><span class="v" style="font-size:13px">${rep.added} nuevos · ${rep.updated} cambiados · ${rep.removed} quitados</span></div></div>`:""}
   ${syncMsg?`<p class="${cls[syncMsg.tone]}" role="status">${esc(syncMsg.text)}</p>`:""}
-  ${avail?"":`<p class="hint">Abre la app desde claude.ai para conectar el calendario.</p>`}
+  ${avail?"":`<p class="hint">${esc(syncNote())}</p>`}
   <button class="cta" data-a="syncnow" data-nr="1"${syncing||!avail?" disabled":""}>${ic("cal")} ${syncing?"Sincronizando":"Sincronizar ahora"}</button>
   ${syncMsg&&syncMsg.perm?`<button class="pill" data-a="syncperm" data-nr="1" style="width:100%;margin-top:10px">Gestionar permisos</button>`:""}
   <div class="fld" style="margin-top:16px"><label for="sf">Sincronizar automáticamente</label>
@@ -1560,9 +1564,6 @@ R["c-gh"]=()=>{
      <div class="fld"><label for="ghT">Token de GitHub</label><input id="ghT" type="password" data-k="ghtk" data-nr="1" placeholder="github_pat_..." autocapitalize="off" autocomplete="off" spellcheck="false"></div>
      ${msg}<button class="cta" data-a="ghon" data-nr="1">${ic("cloud")} Conectar</button>`)+`</div>`};
 
-/* el calendario de claude.ai no existe fuera de claude.ai */
-R["c-sync"]=()=>band("blue","cal","Google Calendar")+`<div class="body"><p class="hint" style="margin-top:0">Esta versión no lee Google Calendar. Añade los turnos a mano en la pestaña Turnos.</p></div>`;
-
 Object.assign(I,{ghrepo:t=>{ghForm.repo=t.value},ghtk:t=>{ghForm.tk=t.value}});
 Object.assign(A,{
   ghnow:()=>{ghMsg=null;ghSync();refresh()},
@@ -1714,6 +1715,42 @@ document.addEventListener("contextmenu",e=>{if(ordHold||ordDrag)e.preventDefault
 Object.assign(A,{
   ordreset:()=>{st.orden={};ordSync();toast("Orden de Inicio restablecido")}
 });
+/* ===== js: 62-agenda.js ===== */
+/* Solo en la versión de GitHub Pages: el calendario llega por una GitHub Action.
+   La Action (en el repo privado de datos) lee tus calendarios de Google por su enlace secreto iCal y escribe
+   agenda.json con el MISMO formato que devuelve el conector de claude.ai ({calendars:{Nombre:[eventos]}}).
+   Aquí solo se sustituye de dónde salen los eventos: la fusión con los turnos, la agenda y la nómina son las de siempre. */
+const AGF="agenda.json";
+let AGJ=null;
+
+async function agGet(){
+  if(!gh)throw new Error("Conecta primero el repo de datos (Copia en GitHub, más abajo).");
+  const r=await fetch("https://api.github.com/repos/"+gh.repo+"/contents/"+AGF+"?t="+Date.now(),{headers:ghH(),cache:"no-store"});
+  if(r.status===404)throw new Error("Todavía no existe agenda.json en tu repo de datos. Lanza la Action «Agenda» (README, paso del calendario).");
+  if(!r.ok)throw ghErr(r.status);
+  const j=await r.json();
+  let o;try{o=JSON.parse(unb64(j.content))}catch(e){throw new Error("agenda.json no se puede leer.")}
+  if(!o||!o.calendars)throw new Error("agenda.json no tiene el formato esperado.");
+  return o}
+
+/* mismas dos funciones que usa 33-sync-gcal.js, apuntando a agenda.json */
+calendarFinder=async()=>{AGJ=await agGet();return name=>AGJ.calendars&&AGJ.calendars[name]?{id:name,summary:name}:undefined};
+listAllEvents=async(id,from,to)=>{
+  const a=Date.parse(from),b=Date.parse(to);
+  return((AGJ&&AGJ.calendars&&AGJ.calendars[id])||[]).filter(ev=>{
+    const t=Date.parse((ev.start&&(ev.start.dateTime||ev.start.date))||"");
+    return !isNaN(t)&&t>=a-864e5&&t<b})};
+
+syncAvail=()=>!!gh;
+syncNote=()=>"Conecta primero el repo de datos (tarjeta «Copia en GitHub»).";
+syncHow=()=>" Aquí los lee una Action de GitHub desde tu repo privado, cada hora; pulsar «Sincronizar ahora» trae lo último que haya leído."+
+  (AGJ&&AGJ.generated?" Último cambio detectado: "+timeAgo(Date.parse(AGJ.generated))+".":"");
+
+/* al abrir: espera a que acabe la sincronización de GitHub (para no fusionar sobre datos viejos) y lee el calendario */
+onReady(async()=>{
+  if(!gh)return;
+  for(let k=0;k<75&&ghBusy;k++)await sleep(200);
+  try{if(syncDue())await runSync();else await refreshAgenda()}catch(e){}});
 /* ===== js: 90-arranque.js ===== */
 /* Arranque: monta la estructura, pinta y carga los datos guardados. */
 mountTabs();
