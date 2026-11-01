@@ -105,21 +105,23 @@
 /* ===== css: 10-base.css ===== */
 /* Reset, tipografía, cabecera, navegación inferior. */
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{min-height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+html{height:100%;overflow:hidden;overscroll-behavior:none}
 body{
-  margin:0;min-height:100%;background-color:var(--bg);color:var(--ink);
+  margin:0;height:100%;overflow:hidden;background-color:var(--bg);color:var(--ink);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
   background-size:20px 20px;font:500 15px/1.45 var(--fb);
   -webkit-font-smoothing:antialiased;overscroll-behavior-y:none;
 }
-.app{max-width:520px;margin:0 auto;position:relative}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+/* El documento no se desplaza: solo <main>. Así el rebote de iOS no mueve cabecera ni barra inferior. */
+.app{max-width:520px;margin:0 auto;position:fixed;top:env(safe-area-inset-top,0px);bottom:0;left:0;right:0;
+  display:flex;flex-direction:column}
+header{position:relative;flex:0 0 auto;z-index:20;background:var(--bg);
   padding:12px 14px 9px;border-bottom:2.5px solid var(--line)}
 .brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-.logo{flex:1;min-width:0;max-width:205px}
+.logo{flex:0 0 auto;width:min(205px,58%)}
 .logo svg{display:block;width:100%;height:auto}
 .sr{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.brand .sy{font:600 10px var(--fd);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.brand .sy{flex:1 1 0;min-width:0;text-align:right;line-height:1.15;max-height:2.3em;overflow:hidden;font:600 10px/1.15 var(--fd);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
 .strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 1px 4px;-webkit-overflow-scrolling:touch}
 .strip::-webkit-scrollbar{display:none}
 .strip button{flex:0 0 auto;font:600 12px var(--fd);letter-spacing:.05em;padding:7px 13px;border-radius:999px;
@@ -128,7 +130,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:va
 .strip button.done{border-color:var(--pink-c)}
 .strip button.done::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
   background:var(--pink-i);margin-left:6px;vertical-align:middle}
-main{padding:16px 14px calc(var(--tab,68px) + env(safe-area-inset-bottom,0px) + 28px)}
+main{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:16px 14px calc(var(--tab,68px) + env(safe-area-inset-bottom,0px) + 28px)}
 section[hidden]{display:none}
 nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
   border-top:2.5px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);
@@ -413,7 +415,8 @@ html[data-ori=l] nav{top:0;bottom:var(--trim,0px);left:0;right:auto;width:calc(v
 html[data-ori=l] nav button{flex:0 0 auto;padding:11px 0}
 html[data-ori=l] main{padding-bottom:28px}
 html[data-ori=l] header{display:flex;align-items:center;gap:16px;padding:8px 14px 6px}
-html[data-ori=l] .brand{margin:0;flex:0 0 232px}
+html[data-ori=l] .brand{margin:0;flex:0 0 300px}
+html[data-ori=l] .logo{width:176px}
 html[data-ori=l] .strip{flex:1;min-width:0;padding:2px 1px}
 html[data-ori=l] .toast{left:calc(50% + var(--rail) / 2)}
 html[data-form=ext][data-ori=l]{--rail:68px;--colw:276px}
@@ -929,7 +932,7 @@ function refresh(except){
     catch(err){if(window.console)console.error(c.id,err);el.innerHTML=`<div class="body"><p class="err">Esta tarjeta ha fallado: ${esc(err.message)}</p></div>`}})}
 
 Object.assign(A,{
-  tab:b=>{tab=b.dataset.v;window.scrollTo(0,0)},
+  tab:b=>{tab=b.dataset.v;$("main").scrollTop=0},
   mes:b=>setMonth(+b.dataset.v)
 });
 /* ===== js: 41-eventos.js ===== */
@@ -1674,7 +1677,7 @@ function ordLoop(){
   cancelAnimationFrame(ordRaf);
   const step=()=>{const d=ordDrag;if(!d)return;
     const edge=90,v=d.y<edge?-(edge-d.y)/6:d.y>innerHeight-edge?(d.y-(innerHeight-edge))/6:0;
-    if(v)window.scrollBy(0,Math.max(-18,Math.min(18,v)));
+    if(v)$("main").scrollTop+=Math.max(-18,Math.min(18,v));
     ordPlace();ordRaf=requestAnimationFrame(step)};
   ordRaf=requestAnimationFrame(step)}
 function ordEnd(){
