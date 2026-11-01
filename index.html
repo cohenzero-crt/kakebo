@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="color-scheme" content="light dark">
+<title>Mi kakebo 2026</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Kakebo">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#E4EBE6">
+<style>#boot{position:fixed;inset:0;z-index:50;overflow:auto;background:var(--bg);padding:max(16px,env(safe-area-inset-top)) 16px 24px}
+#boot .card{max-width:440px;margin:6vh auto 0}#boot[hidden]{display:none}#boot ol{margin:10px 0 0;padding-left:20px;font-size:13px;color:var(--ink2);line-height:1.5}</style>
+<!-- GENERADO por kakebo/build.py a partir de src/. No edites este archivo: edita el módulo de src/ y ejecuta python3 build.py -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20212%20324%22%3E%3Crect%20x=%223%22%20y=%223%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%23EC6868%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3Crect%20x=%22115%22%20y=%223%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%235C98D0%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3Crect%20x=%223%22%20y=%22115%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%235C98D0%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3Crect%20x=%22115%22%20y=%22115%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%23EC6868%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3Crect%20x=%223%22%20y=%22227%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%23EC6868%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3Crect%20x=%22115%22%20y=%22227%22%20width=%2294%22%20height=%2294%22%20rx=%2222%22%20fill=%22%235C98D0%22%20stroke=%22%23008C4C%22%20stroke-width=%226%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- solo los tres kanji del logotipo (subconjunto diminuto) -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&text=%E5%AE%B6%E8%A8%88%E7%B0%BF&display=swap" rel="stylesheet">
+<style>
+/* ===== css: 00-tokens.css ===== */
+/* Colores (claro y oscuro) y tonos pastel. Para cambiar la paleta: solo este archivo. */
+:root{
+  --bg:#E4EBE6; --grid:#D3DDD6; --paper:#FFFFFF; --soft:#F2F7F3; --ink:#24362D; --ink2:#587064; --ink3:#8A9E94; --line:#C7D5CC;
+  --pink-bg:#FCE3E9; --pink-c:#F5B5C6; --pink-i:#A62A50;
+  --lav-bg:#E6E3FA; --lav-c:#BDB6F0; --lav-i:#4A3FA3;
+  --mint-bg:#D9F0DF; --mint-c:#A2D8B4; --mint-i:#1F7043;
+  --yel-bg:#FDF2C4; --yel-c:#F6D872; --yel-i:#7F5A06;
+  --red-bg:#FCDDD6; --red-c:#F5AB9C; --red-i:#A8301C;
+  --blue-bg:#DBEEF9; --blue-c:#9ECFE9; --blue-i:#1D6290;
+  --green-bg:#E0F1D3; --green-c:#B7DE9A; --green-i:#3A7220;
+  /* Apple Calendar: fondo y texto muestreados de capturas reales */
+  --ap-orange-bg:#FAE2BB; --ap-orange-c:#E0C299; --ap-orange-i:#784010;
+  --ap-green-bg:#E7F3D6; --ap-green-c:#C9D6B5; --ap-green-i:#506030;
+  --ap-cyan-bg:#C8ECFB; --ap-cyan-c:#A6CEE1; --ap-cyan-i:#205878;
+  --ap-blue-bg:#B9E0FC; --ap-blue-c:#99C0E2; --ap-blue-i:#184078;
+  --ap-purple-bg:#EEC5F6; --ap-purple-c:#D2A1DB; --ap-purple-i:#601070;
+  --ap-red-bg:#F7CFCF; --ap-red-c:#DCACAC; --ap-red-i:#702020;
+  --ap-teal-bg:#D3EAE7; --ap-teal-c:#B1CCC9; --ap-teal-i:#285550;
+  --logo-red:#EC6868; --logo-blue:#5C98D0; --logo-yel:#FCF48C; --logo-line:#008C4C;
+  --fd:'Fredoka','Trebuchet MS',sans-serif;
+  --fb:'Nunito',-apple-system,system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* Sistema: sigue al iPhone salvo que se fuerce Claro */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A1F; --grid:#1D242B; --paper:#1E252C; --soft:#252E36; --ink:#E7F0EA; --ink2:#A4B8AE; --ink3:#728A80; --line:#33423D;
+    --pink-bg:#3B2530; --pink-c:#5F3345; --pink-i:#FFB8CB;
+    --lav-bg:#2B2850; --lav-c:#443F7E; --lav-i:#CBC5FF;
+    --mint-bg:#1F3A2C; --mint-c:#2F5C46; --mint-i:#A8E8C0;
+    --yel-bg:#3E3519; --yel-c:#5E4F1E; --yel-i:#FFE08A;
+    --red-bg:#3E2622; --red-c:#64372F; --red-i:#FFB4A6;
+    --blue-bg:#1F3544; --blue-c:#2E5670; --blue-i:#A9D8F3;
+    --green-bg:#25381E; --green-c:#3A5A2C; --green-i:#BDE79F;
+    --ap-orange-bg:#5B452D; --ap-orange-c:#865B2D; --ap-orange-i:#FAE2BB;
+    --ap-green-bg:#3C4F36; --ap-green-c:#516D3D; --ap-green-i:#E7F3D6;
+    --ap-cyan-bg:#2B4D5F; --ap-cyan-c:#356982; --ap-cyan-i:#C8ECFB;
+    --ap-blue-bg:#2A4161; --ap-blue-c:#325486; --ap-blue-i:#B9E0FC;
+    --ap-purple-bg:#46335A; --ap-purple-c:#633D7A; --ap-purple-i:#EEC5F6;
+    --ap-red-bg:#553439; --ap-red-c:#7B3E42; --ap-red-i:#F7CFCF;
+    --ap-teal-bg:#2C494B; --ap-teal-c:#356261; --ap-teal-i:#D3EAE7;
+    --logo-red:#EC6868; --logo-blue:#5C98D0; --logo-yel:#FCF48C; --logo-line:#3DBE7E;
+  }
+}
+/* Oscuro forzado */
+:root[data-theme="dark"]{
+  --bg:#151A1F; --grid:#1D242B; --paper:#1E252C; --soft:#252E36; --ink:#E7F0EA; --ink2:#A4B8AE; --ink3:#728A80; --line:#33423D;
+  --pink-bg:#3B2530; --pink-c:#5F3345; --pink-i:#FFB8CB;
+  --lav-bg:#2B2850; --lav-c:#443F7E; --lav-i:#CBC5FF;
+  --mint-bg:#1F3A2C; --mint-c:#2F5C46; --mint-i:#A8E8C0;
+  --yel-bg:#3E3519; --yel-c:#5E4F1E; --yel-i:#FFE08A;
+  --red-bg:#3E2622; --red-c:#64372F; --red-i:#FFB4A6;
+  --blue-bg:#1F3544; --blue-c:#2E5670; --blue-i:#A9D8F3;
+  --green-bg:#25381E; --green-c:#3A5A2C; --green-i:#BDE79F;
+  --ap-orange-bg:#5B452D; --ap-orange-c:#865B2D; --ap-orange-i:#FAE2BB;
+  --ap-green-bg:#3C4F36; --ap-green-c:#516D3D; --ap-green-i:#E7F3D6;
+  --ap-cyan-bg:#2B4D5F; --ap-cyan-c:#356982; --ap-cyan-i:#C8ECFB;
+  --ap-blue-bg:#2A4161; --ap-blue-c:#325486; --ap-blue-i:#B9E0FC;
+  --ap-purple-bg:#46335A; --ap-purple-c:#633D7A; --ap-purple-i:#EEC5F6;
+  --ap-red-bg:#553439; --ap-red-c:#7B3E42; --ap-red-i:#F7CFCF;
+  --ap-teal-bg:#2C494B; --ap-teal-c:#356261; --ap-teal-i:#D3EAE7;
+  --logo-red:#EC6868; --logo-blue:#5C98D0; --logo-yel:#FCF48C; --logo-line:#3DBE7E;
+}
+.t-pink{--tb:var(--pink-bg);--tc:var(--pink-c);--ti:var(--pink-i)}
+.t-lav{--tb:var(--lav-bg);--tc:var(--lav-c);--ti:var(--lav-i)}
+.t-mint{--tb:var(--mint-bg);--tc:var(--mint-c);--ti:var(--mint-i)}
+.t-yel{--tb:var(--yel-bg);--tc:var(--yel-c);--ti:var(--yel-i)}
+.t-red{--tb:var(--red-bg);--tc:var(--red-c);--ti:var(--red-i)}
+.t-blue{--tb:var(--blue-bg);--tc:var(--blue-c);--ti:var(--blue-i)}
+.t-green{--tb:var(--green-bg);--tc:var(--green-c);--ti:var(--green-i)}
+.t-ap-orange{--tb:var(--ap-orange-bg);--tc:var(--ap-orange-c);--ti:var(--ap-orange-i)}
+.t-ap-green{--tb:var(--ap-green-bg);--tc:var(--ap-green-c);--ti:var(--ap-green-i)}
+.t-ap-cyan{--tb:var(--ap-cyan-bg);--tc:var(--ap-cyan-c);--ti:var(--ap-cyan-i)}
+.t-ap-blue{--tb:var(--ap-blue-bg);--tc:var(--ap-blue-c);--ti:var(--ap-blue-i)}
+.t-ap-purple{--tb:var(--ap-purple-bg);--tc:var(--ap-purple-c);--ti:var(--ap-purple-i)}
+.t-ap-red{--tb:var(--ap-red-bg);--tc:var(--ap-red-c);--ti:var(--ap-red-i)}
+.t-ap-teal{--tb:var(--ap-teal-bg);--tc:var(--ap-teal-c);--ti:var(--ap-teal-i)}
+
+/* ===== css: 10-base.css ===== */
+/* Reset, tipografía, cabecera, navegación inferior. */
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{min-height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:20px 20px;font:500 15px/1.45 var(--fb);
+  -webkit-font-smoothing:antialiased;overscroll-behavior-y:none;
+}
+.app{max-width:520px;margin:0 auto;position:relative}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  padding:12px 14px 9px;border-bottom:2.5px solid var(--line)}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.logo{flex:1;min-width:0;max-width:205px}
+.logo svg{display:block;width:100%;height:auto}
+.sr{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.brand .sy{font:600 10px var(--fd);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 1px 4px;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.strip button{flex:0 0 auto;font:600 12px var(--fd);letter-spacing:.05em;padding:7px 13px;border-radius:999px;
+  cursor:pointer;border:2.5px solid var(--line);background:var(--paper);color:var(--ink2)}
+.strip button[aria-pressed=true]{background:var(--mint-c);border-color:var(--mint-i);color:var(--mint-i)}
+.strip button.done{border-color:var(--pink-c)}
+.strip button.done::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--pink-i);margin-left:6px;vertical-align:middle}
+main{padding:16px 14px calc(var(--tab,68px) + env(safe-area-inset-bottom,0px) + 28px)}
+section[hidden]{display:none}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--paper);
+  border-top:2.5px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);
+  display:flex;max-width:520px;margin:0 auto}
+nav button{flex:1;border:0;background:transparent;cursor:pointer;padding:9px 0 8px;display:flex;
+  flex-direction:column;align-items:center;gap:3px;color:var(--ink3)}
+nav button .ic{font-size:21px;--f:transparent}
+nav button .lb{font:600 10px var(--fd);letter-spacing:.05em;text-transform:uppercase}
+nav button[aria-pressed=true]{color:var(--mint-i)}
+nav button[aria-pressed=true] .ic{--f:var(--mint-c)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ===== css: 11-iconos.css ===== */
+/* Iconos, burbujas y mascotas. */
+.ic{width:1.25em;height:1.25em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;vertical-align:-.22em}
+.ic .f{fill:var(--f,none)}
+.bub{flex:none;width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+  background:var(--tb);color:var(--ti);--f:var(--tc);font-size:17px}
+.masc{position:absolute;right:10px;top:8px;width:62px;height:auto;pointer-events:none}
+.mrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mrow .sub{margin:0;flex:1}
+.mrow .masc{position:static;width:48px;flex:none}
+.spk{width:14px;height:14px;fill:var(--yel-c);stroke:var(--yel-i);stroke-width:1.4;stroke-linejoin:round}
+
+/* ===== css: 20-componentes.css ===== */
+/* Piezas reutilizables: tarjetas, botones, chips, filas, ecuaciones. */
+button{font-family:inherit;color:inherit}
+.card{background:var(--paper);border:2.5px solid var(--tc);border-radius:20px;margin-bottom:16px;
+  overflow:hidden;box-shadow:0 4px 0 var(--tc);position:relative}
+.band{display:flex;align-items:center;gap:9px;background:var(--tc);color:var(--ti);padding:9px 14px}
+.band h2{margin:0;flex:1;font:600 16px var(--fd);letter-spacing:.01em}
+.band .bi{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;
+  background:var(--paper);color:var(--ti);--f:var(--tb);font-size:16px}
+.tag{font:600 11px var(--fd);background:var(--paper);color:var(--ti);padding:3px 11px;border-radius:999px}
+.body{padding:14px;position:relative}
+.hint{font-size:12.5px;color:var(--ink2);margin:10px 0 0;line-height:1.45}
+.sub{font:600 13px var(--fd);color:var(--ti);margin:0 0 10px}
+.neg{color:var(--red-i)}
+.pos{color:var(--mint-i)}
+input[type=number],input[type=text],input[type=password],input[type=date],select,textarea{-webkit-appearance:none;appearance:none;
+  width:100%;font:600 15px var(--fb);color:var(--ink);background:var(--soft);
+  border:2px solid var(--line);border-radius:12px;padding:9px 11px;min-width:0}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ti)}
+textarea{resize:vertical;min-height:80px;line-height:1.45}
+input[type=range]{width:100%;accent-color:var(--ti);margin:0;height:30px}
+.biglab{display:block;font:600 16px var(--fd);margin-bottom:2px}
+.bigin{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:6px 0 12px}
+.bigin input{width:210px;max-width:62%;text-align:center;font:600 42px var(--fd);color:var(--ti);
+  background:transparent;border:0;border-bottom:3px dashed var(--tc);border-radius:0;padding:2px 0}
+.bigin.small input{font-size:34px}
+.bigin.left{justify-content:flex-start}
+.bigin.left input{text-align:left;width:150px}
+input::placeholder,textarea::placeholder{color:var(--ink3);opacity:.7}
+.bigin span{font:600 26px var(--fd);color:var(--ink3)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:7px;font:700 13px var(--fb);
+  color:var(--ti);background:var(--tb);border:2px solid var(--tc);border-radius:999px;
+  padding:8px 15px;cursor:pointer;--f:var(--tc)}
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;
+  border-radius:14px;padding:12px;font:600 16px var(--fd);background:var(--ti);color:var(--paper);
+  cursor:pointer;box-shadow:0 3px 0 var(--tc);margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;font:700 12.5px var(--fb);padding:7px 11px;
+  border-radius:999px;border:2px solid var(--tc);background:var(--paper);color:var(--ti);
+  cursor:pointer;--f:var(--tb)}
+.chip.on{background:var(--tc);--f:var(--paper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fld{margin-bottom:14px}
+.fld:last-child{margin-bottom:0}
+.fld label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font:700 13.5px var(--fb);color:var(--ink2);margin-bottom:4px}
+.fld label b{font:600 15px var(--fd);color:var(--ti)}
+.seg{display:flex;gap:7px}
+.seg button{flex:1;font:600 16px var(--fd);padding:10px 0;border-radius:12px;cursor:pointer;
+  border:2.5px solid var(--tc);background:var(--paper);color:var(--ti)}
+.seg button[aria-pressed=true]{background:var(--tc)}
+.sw{position:relative;width:46px;height:27px;flex:none;border:0;padding:0;cursor:pointer;
+  background:var(--ink3);border-radius:14px;transition:background .18s}
+.sw[aria-pressed=true]{background:var(--mint-i)}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;
+  background:#fff;border-radius:50%;transition:transform .18s}
+.sw[aria-pressed=true]::after{transform:translateX(19px)}
+button:focus-visible{outline:2.5px solid var(--yel-i);outline-offset:2px}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:2px dotted var(--line)}
+.row:last-child{border-bottom:0}
+.row .tx{flex:1;min-width:0}
+.row .nm{display:block;font:700 14px var(--fb);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .mt{display:block;font:600 11px var(--fb);color:var(--ink3)}
+.row .am{font:600 15px var(--fd);white-space:nowrap}
+.row.off .nm,.row.off .am{color:var(--ink3);text-decoration:line-through}
+.del{border:0;background:transparent;color:var(--ink3);cursor:pointer;padding:6px;display:grid;place-items:center}
+.grp{border-radius:16px;background:var(--tb);padding:4px 12px 4px;margin-bottom:10px;border:2px solid var(--tc)}
+.grp .gh{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0 4px;
+  font:600 13px var(--fd);color:var(--ti);letter-spacing:.02em}
+.grp .gh b{font:600 14px var(--fd)}
+.grp .row{border-bottom-color:var(--tc)}
+.eqcol{display:flex;flex-direction:column}
+.opr{display:flex;align-items:center;gap:8px;margin-top:8px}
+.opr:first-child{margin-top:0}
+.op{flex:none;width:30px;height:30px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink3);
+  display:grid;place-items:center;font:700 19px var(--fd);color:var(--ink2);line-height:1}
+.op.ghost{border-color:transparent;background:transparent}
+.eqb{flex:1;display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--tb);
+  border:2.5px solid var(--tc);border-radius:14px;padding:10px 12px}
+.eqb span{font:700 13px var(--fb);color:var(--ti)}
+.eqb b{font:600 19px var(--fd);color:var(--ink);white-space:nowrap}
+.eqb.strong{background:var(--tc)}
+.eqb b.neg{color:var(--red-i)}
+.note{font-size:12px;color:var(--ink2);line-height:1.5;margin:0}
+.kv div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;
+  border-bottom:2px dotted var(--line)}
+.kv div:last-child{border-bottom:0}
+.kv .l{font:600 14px var(--fb);color:var(--ink2)}
+.kv .l small{display:block;font:600 11px var(--fb);color:var(--ink3)}
+.kv .v{font:600 16px var(--fd);white-space:nowrap}
+.kv .big{border-top:2.5px solid var(--ti);margin-top:4px;padding-top:11px}
+.kv .big .l{color:var(--ink);font-weight:800}
+.kv .big .v{font-size:21px}
+.check{background:var(--tb);border:2px dashed var(--tc);border-radius:14px;padding:10px 12px;
+  font:600 12.5px var(--fb);color:var(--ink);margin-top:12px;line-height:1.6}
+
+/* Desplegables: dibujo propio (el nativo mete un segundo borde y recorta el texto) con flecha que sigue al tema */
+select{padding-right:34px;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink2) 50%),linear-gradient(135deg,var(--ink2) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 52%,calc(100% - 13px) 52%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+/* Fecha: Safari móvil le da un ancho propio enorme; hay que permitir que se encoja dentro de su celda */
+input[type=date]{min-width:0;max-width:100%;min-height:42px;line-height:1.2;display:block}
+input[type=date]::-webkit-date-and-time-value{text-align:left;min-height:1.2em}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+/* las celdas de una rejilla no pueden negarse a encogerse por culpa de su contenido */
+.two>*,.ccg>*,.tu .g>*{min-width:0}
+
+.body>.grp:last-child{margin-bottom:0}
+
+/* ===== css: 21-avisos.css ===== */
+/* Avisos (toast) y mensajes de error. */
+.toast{position:fixed;left:50%;top:96px;transform:translate(-50%,-10px);
+  opacity:0;pointer-events:none;z-index:70;max-width:88%;padding:11px 16px;border-radius:14px;
+  border:2.5px solid var(--tc);background:var(--tb);color:var(--ti);font:700 14px var(--fb);
+  box-shadow:0 4px 0 var(--tc);text-align:center;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.err{margin:-4px 0 10px;text-align:center;font:700 13px var(--fb);color:var(--red-i)}
+
+/* ===== css: 50-tab-inicio.css ===== */
+/* Estilos propios de Inicio. */
+.yrow{display:grid;grid-template-columns:34px 1fr 74px;gap:9px;align-items:center;padding:5px 0}
+.yrow .mn{font:600 11px var(--fd);letter-spacing:.05em;color:var(--ink3)}
+.yrow.cur .mn{color:var(--ti)}
+.yrow .tr{height:10px;background:var(--tb);border-radius:6px;overflow:hidden;border:1.5px solid var(--tc)}
+.yrow .fl{display:block;height:100%;border-radius:6px;background:var(--tc)}
+.yrow.neg .fl{background:var(--red-c)}
+.yrow .vv{font:600 12.5px var(--fd);text-align:right}
+.restiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.restile{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;min-width:0;min-height:128px;padding:14px 8px;
+  border-radius:22px;background:var(--tb);color:var(--ti);border:2.5px solid var(--tc);box-shadow:0 5px 0 var(--tc);text-align:center}
+.restile .rl{font:600 13px var(--fd);letter-spacing:.04em;text-transform:uppercase}
+.restile .rv{font:700 clamp(24px,8vw,34px) var(--fd);line-height:1.05;overflow-wrap:anywhere}
+
+/* ===== css: 51-tab-diario.css ===== */
+/* Estilos propios de Diario. */
+.catgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cat{background:var(--paper);border:2.5px solid var(--tc);border-radius:18px;padding:11px;
+  box-shadow:0 3px 0 var(--tc)}
+.cat .ch{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cat .cn{font:600 13px var(--fd);color:var(--ti)}
+.cat .cv{font:600 22px var(--fd);letter-spacing:-.01em}
+.cat .cv small{font:600 12px var(--fb);color:var(--ink3)}
+.bar{height:10px;border-radius:6px;background:var(--tb);margin:7px 0 6px;overflow:hidden;border:1.5px solid var(--tc)}
+.bar i{display:block;height:100%;background:var(--tc);border-radius:6px}
+.cat.over .bar i{background:var(--red-i)}
+.cat .cr{font:700 12px var(--fb);color:var(--ink2)}
+.cat .cr.neg{color:var(--red-i)}
+.tbl{width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px}
+.tbl th{font:600 11px var(--fd);padding:4px 3px;text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{padding:6px 4px;text-align:right;font:600 12.5px var(--fd);background:var(--soft)}
+.tbl td:first-child{border-radius:9px 0 0 9px;font-weight:600}
+.tbl td:last-child{border-radius:0 9px 9px 0}
+.tbl tr.tot td{background:var(--tc);color:var(--ti)}
+.tbl .c-lav{color:var(--lav-i)}
+.tbl .c-green{color:var(--green-i)}
+.tbl .c-pink{color:var(--pink-i)}
+.tbl .c-yel{color:var(--yel-i)}
+.wks{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px}
+.wkb{background:var(--tb);border:2.5px solid var(--tc);border-radius:14px;padding:8px 6px;text-align:center}
+.wkb small{display:block;font:600 11px var(--fd);color:var(--ti)}
+.wkb b{font:600 16px var(--fd)}
+
+/* ===== css: 52-tab-turnos.css ===== */
+/* Estilos propios de Turnos. */
+.cal{display:grid;gap:4px}
+.cdow,.crow{display:grid;grid-template-columns:20px repeat(7,1fr);gap:4px}
+.cdow span{text-align:center;font:600 11px var(--fd);color:var(--ink3)}
+.cwn{font:600 9px var(--fd);color:var(--ink3);align-self:center;text-align:center}
+.cd{min-height:56px;background:var(--soft);border:2px solid var(--line);border-radius:10px;padding:3px 2px;
+  display:flex;flex-direction:column;gap:2px;align-items:stretch;cursor:pointer;color:var(--ink);min-width:0}
+.cd.out{opacity:.32}
+.cd.fest .dn{color:var(--red-i)}
+.cd.sel{border-color:var(--ti);background:var(--tb)}
+.cd .dn{font:600 11px var(--fd);width:19px;height:19px;display:grid;place-items:center;border-radius:50%}
+.cd.today .dn{background:var(--ti);color:var(--paper)}
+.pl{font:800 8.5px var(--fb);border-radius:6px;padding:2px 1px;text-align:center;background:var(--tb);
+  color:var(--ti);overflow:hidden;white-space:nowrap}
+.tu{border:2.5px solid var(--tc);border-radius:16px;padding:10px;margin-bottom:10px;background:var(--tb)}
+.tu .top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.tu .top select{flex:1}
+.tu .g{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:7px}
+.tu .g label{display:block;font:700 10px var(--fb);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ti);margin-bottom:3px}
+.tu .res{font:600 12px var(--fb);color:var(--ink2);margin-top:8px}
+.tu .res b{color:var(--ti)}
+
+/* ===== css: 53-tab-cierre.css ===== */
+/* Estilos propios de Cierre. */
+.ccrow{background:var(--tb);border:2.5px solid var(--tc);border-radius:16px;padding:10px;margin-bottom:10px}
+.ccg{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ccg .full{grid-column:1/-1}
+.ccg input{padding:8px 9px;font-size:14px}
+.q{margin-bottom:14px}
+.q p{margin:0 0 6px;font:700 14px var(--fb)}
+.q .auto{font:600 11.5px var(--fb);color:var(--ink3);margin-top:5px}
+.qa{display:flex;gap:7px}
+.qa button{flex:1;font:600 14px var(--fd);padding:8px 0;border-radius:12px;cursor:pointer;
+  border:2.5px solid var(--tc);background:var(--paper);color:var(--ti)}
+.qa button.on{background:var(--tc)}
+.tip{background:var(--pink-i);color:var(--paper);border-radius:18px;padding:14px 14px 14px 16px;
+  margin-bottom:16px;position:relative;box-shadow:0 4px 0 var(--pink-c)}
+.tip b{display:inline-block;font:600 11px var(--fd);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--paper);color:var(--pink-i);padding:2px 9px;border-radius:7px;margin-bottom:6px}
+.tip p{margin:0;font:600 13.5px/1.5 var(--fb)}
+.ccg label{display:block;font:700 10px var(--fb);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ti);margin-bottom:3px}
+
+/* ===== css: 55-tab-sync.css ===== */
+/* Sincronización con Google Calendar: mensajes, botón desactivado y puntos de agenda en el calendario. */
+.okmsg{margin:0 0 10px;text-align:center;font:700 13px var(--fb);color:var(--mint-i)}
+.warnmsg{margin:0 0 10px;text-align:center;font:700 13px var(--fb);color:var(--yel-i)}
+.cta[disabled]{opacity:.55;cursor:default}
+.evd{display:flex;gap:2px;justify-content:center;margin-top:auto;padding-bottom:1px}
+.evd i{display:block;width:6px;height:6px;border-radius:50%;background:var(--ti)}
+
+/* ===== css: 60-asistente.css ===== */
+/* Hoja inferior y asistente Antes de comprar. */
+.sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.sheet[hidden]{display:none}
+/* es un <button>: Safari móvil solo envía el clic a elementos interactivos */
+.shbg{position:absolute;inset:0;border:0;padding:0;background:rgba(20,30,25,.5);cursor:pointer}
+.shbox{position:relative;width:100%;max-width:520px;max-height:90%;overflow:auto;background:var(--paper);
+  border-radius:24px 24px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));
+  border:2.5px solid var(--tc);border-bottom:0}
+.shbox h3{margin:0 0 4px;font:700 20px var(--fd)}
+.shq{font:600 19px/1.3 var(--fd);margin:8px 0 16px}
+.opt{display:block;width:100%;text-align:left;font:700 15px var(--fb);padding:13px 15px;margin-bottom:9px;
+  border-radius:14px;border:2.5px solid var(--tc);background:var(--tb);color:var(--ink);cursor:pointer}
+.res-box{border-radius:18px;padding:16px;background:var(--tb);border:2.5px solid var(--tc);text-align:center}
+.res-box .ic{font-size:34px;color:var(--ti);--f:var(--tc)}
+.res-box h4{margin:6px 0 4px;font:700 22px var(--fd);color:var(--ti)}
+.res-box p{margin:0;font:600 14px/1.5 var(--fb);color:var(--ink)}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">
+      <h1 class="sr">Mi kakebo</h1>
+      <span id="logo" class="logo"></span>
+      <span class="sy" id="sync">2026</span>
+    </div>
+    <div class="strip" id="strip"></div>
+  </header>
+  <main id="main"></main>
+  <nav id="tabs"></nav>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div class="sheet" id="sheet" hidden>
+  <button class="shbg" data-a="wclose" data-nr="1" aria-label="Cerrar"></button>
+  <div class="shbox t-yel" role="dialog" aria-modal="true" aria-label="Antes de comprar" id="shin"></div>
+</div>
+<div id="boot" hidden></div>
+<script type="text/plain" id="appjs">
+/* ===== js: 00-iconos.js ===== */
+/* Iconos SVG propios (sin emojis). Para añadir uno: nueva entrada en ICONS. */
+const ICONS={
+house:'<path class="f" d="M3.5 11.5 12 4l8.5 7.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/>',
+car:'<path class="f" d="M4 16v-3.5L6.2 7h11.6L20 12.5V16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4.5 12.5h15"/><circle class="f" cx="8" cy="17" r="1.7"/><circle class="f" cx="16" cy="17" r="1.7"/>',
+broom:'<path d="M15.5 3 11 11"/><path class="f" d="M7 11.5h8.5l1.5 9H5.5z"/><path d="M9 14.5l-.5 3M12 14.5v3M15 14.5l.3 3"/>',
+parking:'<rect class="f" x="4" y="4" width="16" height="16" rx="4.5"/><path d="M10 16.5V8h3.2a2.6 2.6 0 0 1 0 5.2H10"/>',
+wifi:'<path d="M3 9.5a13.5 13.5 0 0 1 18 0M6 13a9 9 0 0 1 12 0M9 16.4a4.6 4.6 0 0 1 6 0"/><circle cx="12" cy="19.4" r="1.2" fill="currentColor"/>',
+tooth:'<path class="f" d="M7.5 4C5.4 4 4 5.8 4 8c0 2.6 1.2 3.7 1.7 6.2.4 2 .8 5.8 2.3 5.8 1.3 0 1.2-3.2 2-4.4.5-.7 1.5-.7 2 0 .8 1.2.7 4.4 2 4.4 1.5 0 1.9-3.8 2.3-5.8.5-2.5 1.7-3.6 1.7-6.2 0-2.2-1.4-4-3.5-4-1.6 0-2.7 1-4.5 1S9.1 4 7.5 4z"/>',
+bone:'<path class="f" d="M17 10c.7-.7 1.7 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .8.7 1.8 0 2.5l-7 7c-.7.7-1.7 0-2.5 0a2.5 2.5 0 0 0 0 5c.3 0 .5.2.5.5a2.5 2.5 0 1 0 5 0c0-.8-.7-1.8 0-2.5z"/>',
+paw:'<ellipse class="f" cx="12" cy="16" rx="4.6" ry="3.6"/><circle class="f" cx="6.3" cy="11.3" r="1.8"/><circle class="f" cx="9.8" cy="7" r="1.8"/><circle class="f" cx="14.2" cy="7" r="1.8"/><circle class="f" cx="17.7" cy="11.3" r="1.8"/>',
+bolt:'<path class="f" d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/>',
+flame:'<path class="f" d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.2 2-4.2.2 1.2.8 2 1.6 2.4C10.2 8 10.8 5.3 12 3z"/>',
+drop:'<path class="f" d="M12 3.5c3 3.8 5.5 6.6 5.5 9.8a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-9.8z"/>',
+cross:'<rect class="f" x="4" y="4" width="16" height="16" rx="5"/><path d="M12 8v8M8 12h8"/>',
+shield:'<path class="f" d="M12 3.5 19 6v5.5c0 4.2-3 7.500-7 9-4-1.500-7-4.800-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+bank:'<path class="f" d="M3.5 9.5 12 4l8.5 5.5z"/><path d="M6 11.500v6M10 11.500v6M14 11.500v6M18 11.500v6M4 20h16"/>',
+cloud:'<path class="f" d="M7 18a4 4 0 0 1-.6-7.900A5.500 5.500 0 0 1 17 9.500 4.300 4.300 0 0 1 17.500 18z"/>',
+spark:'<path class="f" d="M12 3l1.900 5.100L19 10l-5.100 1.900L12 17l-1.900-5.100L5 10l5.100-1.900z"/><path d="M18.500 16.500v3M17 18h3"/>',
+star:'<path class="f" d="M12 3.500l2.600 5.300 5.900.9-4.200 4.100 1 5.800L12 16.900 6.700 19.600l1-5.800L3.500 9.700l5.900-.9z"/>',
+music:'<path d="M9 18V6l10-2v12"/><circle class="f" cx="7" cy="18" r="2.2"/><circle class="f" cx="17" cy="16" r="2.2"/>',
+doc:'<rect class="f" x="5" y="3.500" width="14" height="17" rx="3"/><path d="M9 9h6M9 13h6M9 17h3"/>',
+play:'<rect class="f" x="3" y="5.500" width="18" height="13" rx="4"/><path d="M10.500 9.500l4 2.500-4 2.500z" fill="currentColor"/>',
+box:'<path class="f" d="M4 8l8-4 8 4v9l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v9"/>',
+pot:'<path class="f" d="M5 11h14v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M3.500 11h17M9 7c0-1.500 1-1.500 1-3M14 7c0-1.500 1-1.500 1-3"/>',
+gamepad:'<rect class="f" x="3" y="7.500" width="18" height="10" rx="5"/><path d="M8 10.500v4M6 12.500h4"/><circle cx="15.500" cy="11.500" r="1" fill="currentColor"/><circle cx="17.800" cy="13.500" r="1" fill="currentColor"/>',
+tv:'<rect class="f" x="3.500" y="6" width="17" height="12" rx="3.500"/><path d="M9 20.500h6M8 3.500l4 2.500 4-2.500"/>',
+book:'<path class="f" d="M5 4.500h10a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M8 17h10M9 8h6"/>',
+bike:'<circle class="f" cx="6" cy="16" r="3.500"/><circle class="f" cx="18" cy="16" r="3.500"/><path d="M6 16l4-7h5l3 7M10 9l3 7M9 6h3"/>',
+ball:'<circle class="f" cx="12" cy="12" r="8.500"/><path d="M3.500 12h17"/><circle cx="12" cy="12" r="2.600" style="fill:var(--paper)"/>',
+dumbbell:'<path d="M7 8v8M17 8v8M4 10v4M20 10v4M7 12h10"/>',
+heart:'<path class="f" d="M12 20s-7.500-4.500-7.500-10A4.200 4.200 0 0 1 12 7.600 4.200 4.200 0 0 1 19.500 10C19.500 15.500 12 20 12 20z"/>',
+phone:'<rect class="f" x="7" y="3" width="10" height="18" rx="3"/><path d="M11 18h2"/>',
+card:'<rect class="f" x="3" y="6" width="18" height="12" rx="3"/><path d="M3 10.500h18M6.500 15h3"/>',
+coin:'<circle class="f" cx="12" cy="12" r="8.500"/><path d="M14.800 9.300a3.700 3.700 0 1 0 0 5.400M8.200 11h5M8.200 13h5"/>',
+cart:'<path d="M3.500 5h2.500l2 10h9.500l1.500-7H7"/><circle class="f" cx="10" cy="19" r="1.400"/><circle class="f" cx="17" cy="19" r="1.400"/>',
+pill:'<g transform="rotate(-40 12 12)"><rect class="f" x="3" y="8.500" width="18" height="7" rx="3.500"/><path d="M12 8.500v7"/></g>',
+bus:'<rect class="f" x="4" y="4" width="16" height="14" rx="4"/><path d="M4 12h16M8 20v-2M16 20v-2"/><circle cx="8.500" cy="15" r=".9" fill="currentColor"/><circle cx="15.500" cy="15" r=".9" fill="currentColor"/>',
+beer:'<path class="f" d="M6 7h9v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M15 9h2.500a1.500 1.500 0 0 1 1.500 1.500v3a1.500 1.500 0 0 1-1.500 1.500H15M6 7c0-2 3-2 4-1 1-1.500 5-1.500 5 1"/>',
+fork:'<path d="M8 3v7M5.500 3v5a2.500 2.500 0 0 0 5 0V3M8 11v10M16 21V3c-2.500 1-3.500 4-3.500 8H16"/>',
+burger:'<path class="f" d="M4 11a8 6 0 0 1 16 0z"/><path d="M4 14h16"/><path class="f" d="M5 16.500h14v.500a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/>',
+party:'<path class="f" d="M4 20l4.500-12 7.500 7.500z"/><path d="M12 5.500l.5-2M16 7.500l2-1M17.500 11.500l2.500.5"/>',
+smoke:'<path class="f" d="M3.500 15h13v4h-13z"/><path d="M19 15v4M21.500 15v4M17 11c0-2 2-2 2-4"/>',
+lip:'<path class="f" d="M9 21v-8h6v8z"/><path d="M10 13V8l2-3 2 3v5"/>',
+shirt:'<path class="f" d="M9 4L3.500 7.500 6 11l2-1v10h8V10l2 1 2.500-3.500L15 4c-.6 1.300-1.800 2-3 2S9.600 5.300 9 4z"/>',
+film:'<rect class="f" x="4" y="4.500" width="16" height="15" rx="3"/><path d="M8 4.500v15M16 4.500v15M4 9.500h4M4 14.500h4M16 9.500h4M16 14.500h4"/>',
+ticket:'<rect class="f" x="3" y="6" width="18" height="12" rx="2.500"/><path d="M15 6v12" stroke-dasharray="2 2"/>',
+gift:'<rect class="f" x="4" y="9.500" width="16" height="10.500" rx="2"/><path d="M3 9.500h18v-3H3zM12 6.500V20M12 6.500c-1-3-5-3-4 0M12 6.500c1-3 5-3 4 0"/>',
+sofa:'<path d="M5 11V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path class="f" d="M3.500 13a2 2 0 0 1 4 0v1.500h9V13a2 2 0 0 1 4 0v4.500h-17z"/>',
+dots:'<circle cx="6" cy="12" r="1.400" fill="currentColor"/><circle cx="12" cy="12" r="1.400" fill="currentColor"/><circle cx="18" cy="12" r="1.400" fill="currentColor"/>',
+moon:'<path class="f" d="M19 14.500A7.500 7.500 0 0 1 9.500 5 7.500 7.500 0 1 0 19 14.500z"/>',
+sun:'<circle class="f" cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.600 5.600 7 7M17 17l1.400 1.400M18.400 5.600 17 7M7 17l-1.400 1.400"/>',
+pulse:'<path d="M3 12h4l2-5 3 10 2.500-7 1.500 2H21"/>',
+plus:'<path d="M12 5v14M5 12h14"/>',
+x:'<path d="M6 6l12 12M18 6L6 18"/>',
+check:'<path d="M5 12.500l4.500 4.500L19 7.500"/>',
+cal:'<rect class="f" x="3.500" y="5" width="17" height="15.500" rx="3.500"/><path d="M3.500 10h17M8 3v4M16 3v4"/>',
+pencil:'<path class="f" d="M4 20l1-4.500L16.500 4a2 2 0 0 1 3 3L8 18.500z"/><path d="M14.500 6l3.500 3.500"/>',
+gear:'<circle class="f" cx="12" cy="12" r="3"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M18.400 5.600l-1.800 1.800M7.400 16.600l-1.800 1.800"/>',
+flag:'<path d="M6 21V4"/><path class="f" d="M6 5h11l-2 3.500L17 12H6z"/>',
+home:'<path class="f" d="M3.500 11.500 12 4l8.500 7.500V20a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1z"/><path d="M9.500 21v-5.500h5V21"/>',
+back:'<path d="M14 6l-6 6 6 6"/>'
+};
+const ic=(k,x="")=>`<svg class="ic ${x}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]||ICONS.dots}</svg>`;
+/* ===== js: 01-mascotas.js ===== */
+/* Mascotas y adornos kawaii (SVG). */
+const SPARK='<svg class="spk" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.600 7.400L22 12l-7.400 2.600L12 22l-2.600-7.400L2 12l7.400-2.600z"/></svg>';
+const MASC={
+purse:'<svg class="masc" viewBox="0 0 64 60" aria-hidden="true"><rect x="5" y="16" width="54" height="36" rx="10" fill="var(--pink-c)" stroke="var(--pink-i)" stroke-width="2.500"/><path d="M41 28h18v13H41a6.500 6.500 0 0 1 0-13z" fill="var(--pink-bg)" stroke="var(--pink-i)" stroke-width="2.500"/><circle cx="44" cy="34.500" r="2.200" fill="var(--pink-i)"/><circle cx="19" cy="31" r="2.400" fill="var(--ink)"/><circle cx="31" cy="31" r="2.400" fill="var(--ink)"/><path d="M22 36.500q3 3 6 0" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><ellipse cx="14" cy="36.500" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/><ellipse cx="36" cy="36.500" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/><path d="M18 52v5M42 52v5" stroke="var(--pink-i)" stroke-width="3" stroke-linecap="round"/></svg>',
+sack:'<svg class="masc" viewBox="0 0 56 62" aria-hidden="true"><path d="M20 9q8-6 16 0l-3 8H23z" fill="var(--mint-c)" stroke="var(--mint-i)" stroke-width="2.500" stroke-linejoin="round"/><path d="M22 17C8 26 6 53 28 53s20-27 6-36z" fill="var(--mint-c)" stroke="var(--mint-i)" stroke-width="2.500" stroke-linejoin="round"/><circle cx="21" cy="36" r="2.300" fill="var(--ink)"/><circle cx="35" cy="36" r="2.300" fill="var(--ink)"/><path d="M24 42q4 3.500 8 0" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><ellipse cx="16" cy="41" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/><ellipse cx="40" cy="41" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/><path d="M22 12h12" stroke="var(--mint-i)" stroke-width="2.500" stroke-linecap="round"/></svg>',
+coin:'<svg class="masc" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="22" fill="var(--yel-c)" stroke="var(--yel-i)" stroke-width="2.500"/><circle cx="28" cy="28" r="16" fill="none" stroke="var(--yel-i)" stroke-width="2" stroke-dasharray="3 3"/><circle cx="21" cy="26" r="2.300" fill="var(--ink)"/><circle cx="35" cy="26" r="2.300" fill="var(--ink)"/><path d="M24 33q4 4 8 0" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/><ellipse cx="16" cy="32" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/><ellipse cx="40" cy="32" rx="3" ry="2" fill="var(--red-c)" opacity=".7"/></svg>'
+};
+/* ===== js: 02-logo.js ===== */
+/* Logotipo: rótulo de seis fichas en una fila, con los elementos de la portada del libro,
+   KA 家 計 KE BO 簿 (rojo y azul en damero, letras amarillas, kanji blancos, contorno verde).
+   Mismo orden de lectura que la portada. Colores en 00-tokens.css (--logo-*). */
+function logoSVG(){
+  const T=[["KA","r"],["家","b"],["計","b"],["KE","r"],["BO","r"],["簿","b"]];
+  const tiles=T.map(([t,c],i)=>{
+    const x=i*110,lat=/^[A-Z]+$/.test(t);
+    return `<rect x="${x+2.5}" y="2.5" width="95" height="95" rx="24" fill="var(--logo-${c==="r"?"red":"blue"})" stroke="var(--logo-line)" stroke-width="5"/>`+
+      `<text x="${x+50}" y="${lat?68:74}" text-anchor="middle" font-size="${lat?50:62}" font-weight="700" fill="${lat?"var(--logo-yel)":"#fff"}" `+
+      `font-family="${lat?"Fredoka,Nunito,sans-serif":"'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif"}">${t}</text>`}).join("");
+  return `<svg viewBox="-4 -4 658 108" role="img" aria-label="Kakebo">${tiles}</svg>`}
+/* ===== js: 10-datos.js ===== */
+/* Datos genéricos: meses, tarifas SISCAT, festivos, tipos de turno, grupos y categorías kakebo.
+   Los datos PERSONALES (importes, recibos, turnos) están aparte, en 11-datos-personales.js. */
+const YEAR=2026;
+const M=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const S=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+const S3=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const DOW=["dom","lun","mar","mié","jue","vie","sáb"];
+const EXTRA=[5,11], ALL=[0,1,2,3,4,5,6,7,8,9,10,11];
+
+const SISCAT={R1:{m:1503.68,lab:18.85,fes:20.56},R2:{m:1617.76,lab:22.62,fes:24.68},
+              R3:{m:1757.12,lab:26.39,fes:28.78},R4:{m:1896.58,lab:28.28,fes:30.84}};
+
+const FEST=new Set(["2026-01-01","2026-01-06","2026-04-03","2026-04-06","2026-05-01","2026-06-24",
+ "2026-08-15","2026-09-11","2026-09-24","2026-10-12","2026-11-01","2026-12-06","2026-12-08",
+ "2026-12-25","2026-12-26"]);
+
+const TIPO={
+  N3F:["moon","Guardia N3F (16–08)",16,16,"ap-orange","N3F"],
+  N3F1:["sun","Guardia N3F1 (08–20)",12,8,"ap-orange","N3F1"],
+  N3F2:["moon","Guardia N3F2 (20–08)",12,20,"ap-orange","N3F2"],
+  CHIQUI:["pulse","Chiquiguardia",4,16,"ap-teal","CHQ"],
+  DOBLAJE:["plus","Doblaje",5,15,"ap-cyan","DBL"],
+  AC:["cross","Atención Continuada",5,9,"ap-blue","AC"]};
+/* turnos iniciales: salen de TUR0 (datos personales, 11-datos-personales.js) */
+const turIni=()=>{const o={};for(let i=0;i<12;i++)o[i]=(TUR0[i]||[]).map(x=>Array.isArray(x)?{d:x[0],t:x[1],h:x[2],s:x[3]}:{...x});return o};
+
+const GR=[["casa","Casa","mint"],["coche","Coche","blue"],["salud","Salud y mascota","pink"],
+          ["otros","Otros","yel"],["subs","Suscripciones","lav"]];
+
+/* categorias kakebo */
+const CAT={
+ surv:{n:"Supervivencia",t:"lav",ic:"cart",subs:[["Alimentación","cart"],["Farmacia","pill"],["Transporte","bus"],["Mascotas","paw"],["Otros","dots"]]},
+ ocio:{n:"Ocio y vicio",t:"green",ic:"beer",subs:[["Bares","beer"],["Restaurantes","fork"],["Comida rápida","burger"],["Fiestas","party"],["Tabaco","smoke"],["Cosméticos","lip"],["Ropa","shirt"]]},
+ cult:{n:"Cultura",t:"pink",ic:"book",subs:[["Libros","book"],["Música y cine","film"],["Espectáculos","ticket"]]},
+ extra:{n:"Extras",t:"yel",ic:"gift",subs:[["Regalos","gift"],["Hogar","sofa"],["Otros","dots"]]}};
+const CK=Object.keys(CAT);
+const subIcon=(c,s)=>{const f=CAT[c].subs.find(x=>x[0]===s);return f?f[1]:CAT[c].ic};
+/*@@PERSONAL@@*/
+/* ===== js: 15-utils.js ===== */
+/* Utilidades generales: formato, fechas, semanas. */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const clone=o=>typeof structuredClone==="function"?structuredClone(o):JSON.parse(JSON.stringify(o));
+/* Acepta "12,5", "12.5" y "1.234,50": nunca depende del idioma del teléfono */
+const num=v=>{let t=String(v==null?"":v).trim().replace(/[\s€]/g,"");if(!t)return 0;
+  if(t.indexOf(",")>=0)t=t.replace(/\./g,"").replace(",",".");
+  else if((t.match(/\./g)||[]).length>1)t=t.replace(/\./g,"");
+  const n=parseFloat(t);return isFinite(n)?n:0};
+const fmtIn=n=>String(n).replace(".",",");   /* número -> texto para los campos de importe */
+const eur=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR",minimumFractionDigits:2,maximumFractionDigits:2});
+const eur0=n=>n.toLocaleString("es-ES",{style:"currency",currency:"EUR",maximumFractionDigits:0});
+const pc=n=>n.toFixed(2).replace(".",",")+" %";
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const TODAY=iso(new Date());
+const dim=i=>new Date(YEAR,i+1,0).getDate();
+const fmtD=d=>+d.slice(8)+" "+S3[+d.slice(5,7)-1];
+const dayLab=d=>{const x=new Date(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8));return DOW[x.getDay()]+" "+x.getDate()};
+const refl=i=>st.refl[i]||(st.refl[i]={q1:null,q2:null,q3:null,txt:""});
+const dateIn=i=>{const t=new Date();return (t.getFullYear()===YEAR&&t.getMonth()===i)?TODAY:YEAR+"-"+String(i+1).padStart(2,"0")+"-01"};
+function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const n=t.getUTCDay()||7;
+  t.setUTCDate(t.getUTCDate()+4-n);const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y0)/864e5+1)/7)}
+function weeks(i){const first=new Date(YEAR,i,1),last=new Date(YEAR,i+1,0);
+  const s=new Date(first);s.setDate(s.getDate()-((s.getDay()+6)%7));const out=[];
+  while(s<=last){const e=new Date(s);e.setDate(e.getDate()+6);out.push({s:new Date(s),e,n:isoWeek(s)});s.setDate(s.getDate()+7)}
+  return out}
+const lim=(i,w)=>[iso(new Date(Math.max(w.s,new Date(YEAR,i,1)))),iso(new Date(Math.min(w.e,new Date(YEAR,i+1,0))))];
+const defWeek=i=>{const ws=weeks(i);const k=ws.findIndex(w=>{const[a,b]=lim(i,w);return TODAY>=a&&TODAY<=b});return k<0?0:k};
+/* ===== js: 20-estado.js ===== */
+/* Estado de la app y persistencia (localStorage + base de datos del artefacto). */
+const mk12=()=>Array.from({length:12},()=>[]);
+const DEF={v:2,R:"R1",irpf:15,ss:6.55,irpfR:16,fact:1.5,sabFest:true,
+  base:CONV.base,capt:CONV.capt,prorr:NOM.prorr,pvacPct:CONV.pvacPct,extra:CONV.extra,
+  ahorroPct:40,cat:{surv:50,ocio:25,cult:10,extra:15},
+  on:SUBS.map(()=>true),tur:turIni(),cob:Array(12).fill(null),
+  cards:mk12(),diary:mk12(),goals:Array.from({length:12},()=>["","",""]),refl:{},
+  /* sincronización con Google Calendar: ign = turnos borrados a propósito (no vuelven a entrar) */
+  sync:{last:0,n:0,rep:null,freq:"week",exclude:"Casernes",cal:{cap:true,citas:true,cursos:true},ign:[]}};
+let st=clone(DEF);
+
+let save=()=>{},saveTimer=null;
+const queue=()=>{clearTimeout(saveTimer);saveTimer=setTimeout(()=>save(),700)};
+
+/* Sanea un estado guardado (de esta u otra versión de la app) */
+function migrate(x){
+  const b=Object.assign(clone(DEF),x||{});
+  ["cards","diary"].forEach(k=>{if(!Array.isArray(b[k]))b[k]=mk12();for(let i=0;i<12;i++)if(!Array.isArray(b[k][i]))b[k][i]=[]});
+  if(!Array.isArray(b.goals))b.goals=clone(DEF.goals);
+  for(let i=0;i<12;i++)if(!Array.isArray(b.goals[i]))b.goals[i]=["","",""];
+  if(!b.tur||typeof b.tur!=="object")b.tur=turIni();
+  for(let i=0;i<12;i++)if(!Array.isArray(b.tur[i]))b.tur[i]=[];
+  if(!b.refl||Array.isArray(b.refl))b.refl={};
+  if(!b.cat||typeof b.cat!=="object")b.cat=clone(DEF.cat);
+  b.sync=Object.assign(clone(DEF.sync),b.sync&&typeof b.sync==="object"?b.sync:{});
+  b.sync.cal=Object.assign({},DEF.sync.cal,b.sync.cal||{});
+  if(!Array.isArray(b.sync.ign))b.sync.ign=[];
+  if(!Array.isArray(b.on))b.on=SUBS.map(()=>true);
+  while(b.on.length<SUBS.length)b.on.push(true);
+  if(!Array.isArray(b.cob))b.cob=Array(12).fill(null);
+  /* versiones antiguas: una sola cifra de tarjeta por mes */
+  if(x&&Array.isArray(x.tjt))x.tjt.forEach((v,i)=>{if(v>0&&!b.cards[i].length)
+    b.cards[i]=[{dia:"",tarjeta:"",concepto:"Tarjeta (importado)",pago:"",interes:0,importe:v}]});
+  /* el recibo de julio (8 h lab + 5 h fest) debe existir para calcular la nómina de agosto */
+  if(!b.tur[6].length&&!(x&&x.v===2))b.tur[6]=clone(turIni()[6]);
+  /* nómina real de septiembre (turnos de agosto: 34 h lab + 24 h fest): captación 459,71, plus vacances 9,09 %, IRPF 15 %, sábados festivos, líquido 2.488,26 */
+  if(!b.nom26){b.capt=CONV.capt;b.pvacPct=CONV.pvacPct;b.irpf=15;b.sabFest=true;if(b.cob[8]==null)b.cob[8]=2488.26;
+    if(!b.tur[8].some(t=>t.d==="2026-09-17")&&!b.sync.ign.some(k=>String(k).includes("2026-09-17")))b.tur[8].push({d:"2026-09-17",t:"DOBLAJE",h:5,s:15});
+    b.nom26=1}
+  b.v=2;return b}
+
+async function loadState(){
+  let local=null;
+  try{local=JSON.parse(localStorage.getItem("kakebo2026")||localStorage.getItem("presu2026")||"null")}catch(e){}
+  if(local){st=migrate(local);refresh()}
+  const lsave=()=>{try{localStorage.setItem("kakebo2026",JSON.stringify(st))}catch(e){}};
+  save=lsave;
+  try{
+    if(typeof claude==="undefined")return;
+    const db=await claude.use("db"),user=await claude.use("user");
+    if(!db||!user)return;
+    const uid=await user.id();if(!uid)return;
+    const ref=db.doc("data/users/"+uid+"/presupuesto");
+    const snap=await ref.get(), d=snap.exists?snap.data():null;
+    /* se guarda como texto JSON: evita problemas con arrays anidados en la base de datos */
+    const remote=d&&(d.json?JSON.parse(d.json):d.st);
+    if(remote){st=migrate(remote);refresh()}
+    let busy=false,pend=false;
+    save=async()=>{lsave();if(busy){pend=true;return}busy=true;
+      try{await ref.set({json:JSON.stringify(st),at:Date.now()})}catch(e){}
+      busy=false;if(pend){pend=false;queue()}};
+    $("sync").textContent="2026 · sincronizado";
+  }catch(e){}
+}
+/* ===== js: 30-calc-gastos.js ===== */
+/* Cálculo de gastos fijos de un mes (suministros, puntuales, suscripciones). */
+function utils(i){const o=[];
+  if(ENERGIA[i]!=null)o.push(["bolt","Luz · Energia BonpreuEsclat",ENERGIA[i]]);
+  if(NATURGY[i]!=null)o.push(["flame","Gas · Naturgy",NATURGY[i]]);
+  if(AIGUES[i]!=null)o.push(["drop","Agua · Aigües de Barcelona",AIGUES[i]]);
+  if(AQUATEC[i]!=null)o.push(["drop","Aquatec",AQUATEC[i]]);return o}
+function rows(i){
+  const r=FIX.map(([ic,nm,a,g])=>({ic,nm,a,k:"fijo",g}));
+  utils(i).forEach(([ic,nm,a])=>r.push({ic,nm,a:a*st.fact,k:"util",base:a,g:"casa"}));
+  (PUNT[i]||[]).forEach(([ic,nm,a,g])=>r.push({ic,nm,a,k:"fijo",g}));
+  const subs=[];
+  SUBS.forEach(([ic,nm,a,n,ms],x)=>{if(ms.includes(i))subs.push({ic,nm,a,k:"sub",on:st.on[x],anual:n===1,x,g:"subs"})});
+  subs.sort((p,q)=>(p.anual?1:0)-(q.anual?1:0));   /* mensuales primero, anuales después (orden estable) */
+  return r.concat(subs)}
+const fijos=i=>rows(i).reduce((s,r)=>s+(r.k==="sub"&&!r.on?0:r.a),0);
+/* ===== js: 31-calc-nomina.js ===== */
+/* Turnos, nómina a mes vencido, Hacienda y disponible. */
+const esFest=d=>{if(FEST.has(iso(d)))return true;const w=d.getDay();return w===0||(st.sabFest&&w===6)};
+function partir(tu){
+  const t=SISCAT[st.R];
+  if(tu.ml!=null||tu.mf!=null){const l=tu.ml||0,f=tu.mf||0;return{l,f,imp:l*t.lab+f*t.fes}}
+  const [Y,Mo,D]=tu.d.split("-").map(Number);
+  const cur=new Date(Y,Mo-1,D,tu.s||0);let l=0,f=0;
+  for(let k=0;k<tu.h;k++){esFest(cur)?f++:l++;cur.setHours(cur.getHours()+1)}
+  return{l,f,imp:l*t.lab+f*t.fes}}
+const plusMes=i=>(st.tur[i]||[]).reduce((a,tu)=>a+partir(tu).imp,0);
+const horasMes=i=>(st.tur[i]||[]).reduce((a,tu)=>{const p=partir(tu);return{l:a.l+p.l,f:a.f+p.f}},{l:0,f:0});
+function pay(i){
+  const plus=i>0?plusMes(i-1):0, pvac=plus*st.pvacPct/100, ex=EXTRA.includes(i)?st.extra:0, red=-plus*NOM.redPct;
+  const deveng=st.base+st.capt+plus+pvac+red+ex;
+  const baseSS=deveng-ex+st.prorr, ss=baseSS*st.ss/100, irpf=deveng*st.irpf/100;
+  let anual=(st.base+st.capt)*12+st.extra*2;
+  for(let k=0;k<12;k++)anual+=plusMes(k)*(1+st.pvacPct/100-NOM.redPct);
+  return{plus,pvac,red,ex,deveng,baseSS,ss,irpf,neto:deveng-ss-irpf,brutoAno:anual}}
+const estim=i=>pay(i).neto;
+const cobrado=i=>st.cob[i]!=null?st.cob[i]:estim(i);
+const prov=i=>Math.max(0,(st.irpfR-st.irpf)/100)*pay(i).deveng;
+const disp=i=>cobrado(i)-fijos(i)-prov(i);
+/* ===== js: 32-calc-kakebo.js ===== */
+/* Método kakebo: diario, presupuestos por categoría, ahorro final. */
+/* kakebo */
+const dEntries=i=>st.diary[i]||[];
+const spent=(i,c)=>dEntries(i).filter(e=>e.c===c).reduce((a,e)=>a+e.a,0);
+const cardTot=i=>(st.cards[i]||[]).reduce((a,e)=>a+e.importe+e.interes,0);
+const gastoMes=i=>dEntries(i).reduce((a,e)=>a+e.a,0)+cardTot(i);
+const ahorroAnt=i=>Math.max(0,disp(i))*st.ahorroPct/100;
+const presup=i=>disp(i)-ahorroAnt(i);
+const catSum=()=>CK.reduce((a,c)=>a+st.cat[c],0)||1;
+const catBud=(i,c)=>Math.max(0,presup(i))*st.cat[c]/catSum();
+const catRem=(i,c)=>catBud(i,c)-spent(i,c);
+const ahorroFinal=i=>presup(i)-gastoMes(i);
+const wBud=i=>Math.max(0,presup(i))/(dim(i)/7);
+const wEntries=(i,w)=>{const[a,b]=lim(i,w);return dEntries(i).filter(e=>e.d>=a&&e.d<=b)};
+/* ===== js: 33-sync-gcal.js ===== */
+/* Sincronización con Google Calendar mediante la capacidad `mcp` del artefacto (credenciales del propio usuario).
+   Solo lógica: sin pantalla. La pantalla está en 56-sync-ui.js.
+
+   - Calendarios de TURNOS (Guardia, Atención Continuada, Chiquiguardia, Doblajes): se fusionan en st.tur y
+     alimentan la nómina. Se guardan.
+   - Calendarios de AGENDA (CAP, Citas, Cursos): solo se muestran. NO se guardan (se vuelven a pedir al abrir),
+     porque contienen citas personales.
+   Formatos observados en respuestas reales:
+     list_calendars -> {calendars:[{id,summary,timeZone}]}
+     list_events    -> {summary,events:[{id,summary,location,start:{dateTime,timeZone},end:{...}}],nextPageToken?}
+     dateTime viene en UTC ("...Z") junto a timeZone "Europe/Madrid": la hora local se calcula con Intl. */
+const GCAL="Google Calendar";
+const SYNC_FROM=YEAR+"-01-01T00:00:00Z", SYNC_TO=(YEAR+1)+"-01-01T00:00:00Z";
+const SHIFT_CALS=[{name:"Guardia",codes:true},{name:"Atención Continuada",type:"AC"},
+                  {name:"Chiquiguardia",type:"CHIQUI"},{name:"Doblajes",type:"DOBLAJE"}];
+const AGENDA_CALS=[{key:"cap",name:"CAP",icon:"cross",tone:"ap-green"},{key:"citas",name:"Citas",icon:"cal",tone:"ap-red"},
+                   {key:"cursos",name:"Cursos",icon:"book",tone:"ap-purple"}];
+
+const norm=s=>String(s==null?"":s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const addDaysISO=n=>{const d=new Date();d.setDate(d.getDate()+n);d.setHours(0,0,0,0);return d.toISOString()};
+
+/* hora local de un instante en la zona del evento */
+function localParts(iso,tz){
+  const d=new Date(iso);if(isNaN(d))return null;
+  const f=new Intl.DateTimeFormat("en-GB",{timeZone:tz||"Europe/Madrid",hourCycle:"h23",year:"numeric",month:"2-digit",
+    day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const o={};f.formatToParts(d).forEach(p=>{o[p.type]=p.value});
+  return{d:o.year+"-"+o.month+"-"+o.day,h:+o.hour,m:+o.minute,ms:d.getTime()}}
+
+/* ---------- llamadas al conector ---------- */
+let _mcp;
+async function getMcp(){
+  if(typeof claude==="undefined")return null;
+  if(_mcp!==undefined)return _mcp;
+  try{_mcp=await claude.use("mcp")}catch(e){_mcp=null}
+  return _mcp}
+const payloadOf=r=>{let p=r&&r.payload;if(typeof p==="string"){try{p=JSON.parse(p)}catch(e){}}return p};
+/* una lectura; solo los errores marcados como reintentables se repiten, una vez */
+async function gcalCall(tool,input){
+  const mcp=await getMcp();if(!mcp)throw{code:"capability_disabled",message:"sin conectores"};
+  for(let k=0;k<2;k++){
+    try{return payloadOf(await mcp.callTool(GCAL,tool,input))}
+    catch(e){if(e&&e.retryable&&k===0){await sleep(e.retryAfterMs||(1000+Math.random()*800));continue}throw e}}}
+async function listAllEvents(calId,from,to){
+  const out=[];let tok;
+  for(let page=0;page<8;page++){
+    const p=await gcalCall("list_events",Object.assign({calendarId:calId,startTime:from,endTime:to,orderBy:"startTime",pageSize:250},tok?{pageToken:tok}:{}));
+    out.push(...((p&&p.events)||[]));tok=p&&p.nextPageToken;if(!tok)break}
+  return out}
+async function calendarFinder(){
+  const p=await gcalCall("list_calendars",{});const list=(p&&p.calendars)||[];
+  return name=>list.find(c=>norm(c.summary)===norm(name))}
+
+/* cada código de error tiene su propio remedio (nunca un aviso genérico) */
+function gcalErrorText(e){
+  const c=e&&e.code;
+  const T={needs_reauth:"Google Calendar necesita que vuelvas a conectarlo: claude.ai, Ajustes, Conectores.",
+    server_not_connected:"Google Calendar no está conectado. Añádelo en claude.ai, Ajustes, Conectores.",
+    selection_required:"Tienes dos conexiones de Google Calendar. Elige una cuando la app te lo pida.",
+    not_in_manifest:"Has dejado sin permiso a Google Calendar para esta app. Pulsa Gestionar permisos.",
+    consent_required:"Falta tu permiso para leer Google Calendar. Pulsa Gestionar permisos.",
+    not_granted:"Esta vista no tiene permiso para usar conectores. Pulsa Gestionar permisos.",
+    blocked_by_policy:"La política de tu organización bloquea esta consulta al calendario.",
+    approval_required:"Tu organización exige aprobar cada consulta y esta app aún no lo admite.",
+    server_unavailable:"Google Calendar no responde ahora mismo. Inténtalo en un minuto.",
+    capability_disabled:"Ábrela desde claude.ai para poder conectar el calendario.",
+    capability_removed:"Ábrela desde claude.ai para poder conectar el calendario.",
+    bad_request:"La consulta al calendario no es válida: "+(e&&e.message||""),
+    cancelled:"La consulta se canceló."};
+  return T[c]||("No se pudo leer el calendario"+(e&&e.message?": "+e.message:"."))}
+const needsPermission=e=>!!e&&["not_in_manifest","consent_required","not_granted"].indexOf(e.code)>=0;
+
+/* ---------- eventos -> turnos ---------- */
+const excluded=(title,list)=>{const t=norm(title);return String(list||"").split(",").map(norm).filter(Boolean).some(x=>t.indexOf(x)>=0)};
+function parseShift(cal,ev,excludeList){
+  if(!ev||!ev.start||!ev.start.dateTime)return null;                 /* los eventos de día completo no son turnos */
+  if(excluded(ev.summary,excludeList))return null;
+  const s=localParts(ev.start.dateTime,ev.start.timeZone);if(!s||+s.d.slice(0,4)!==YEAR)return null;
+  let t=cal.type;
+  if(cal.codes){const m=/\bN3F([12])?\b/i.exec(ev.summary||"");if(!m)return null;t="N3F"+(m[1]||"")}   /* ignora lo que no sea guardia */
+  let h=TIPO[t][2];
+  if(!cal.codes&&ev.end&&ev.end.dateTime){const e=localParts(ev.end.dateTime,ev.end.timeZone);
+    const dur=e?Math.round((e.ms-s.ms)/36e5):0;if(dur>=1&&dur<=24)h=dur}  /* guardias: duración fija (el calendario recorta la noche) */
+  return{gid:ev.id,d:s.d,t,s:s.h,h}}
+function parseAgenda(cal,ev){
+  if(!ev||!ev.start||ev.status==="cancelled")return null;
+  const pad=n=>String(n).padStart(2,"0");
+  if(!ev.start.dateTime)return{id:ev.id,cal:cal.key,title:ev.summary||"(sin título)",d:ev.start.date,s:"",e:"",loc:(ev.location||"").split("\n")[0],allDay:true};
+  const s=localParts(ev.start.dateTime,ev.start.timeZone),e=ev.end&&ev.end.dateTime?localParts(ev.end.dateTime,ev.end.timeZone):null;
+  if(!s)return null;
+  return{id:ev.id,cal:cal.key,title:ev.summary||"(sin título)",d:s.d,s:pad(s.h)+":"+pad(s.m),e:e?pad(e.h)+":"+pad(e.m):"",loc:(ev.location||"").split("\n")[0]}}
+
+/* ---------- fusión con los turnos guardados ----------
+   - quita los que vinieron del calendario y ya no existen (solo de calendarios leídos con éxito)
+   - actualiza los cambiados y los mueve de mes si hace falta
+   - adopta un turno manual idéntico (misma fecha y tipo) en lugar de duplicarlo
+   - respeta los borrados a propósito (st.sync.ign) y no toca los turnos manuales */
+function mergeShifts(fetched,okTypes){
+  const rep={added:0,updated:0,removed:0,adopted:0},ign=new Set(st.sync.ign||[]);
+  const gids=new Set(fetched.map(f=>f.gid));
+  for(let m=0;m<12;m++)st.tur[m]=(st.tur[m]||[]).filter(x=>{
+    if(x.src!=="gcal"||!okTypes.has(x.t)||gids.has(x.gid))return true;rep.removed++;return false});
+  const all=[];for(let m=0;m<12;m++)st.tur[m].forEach(x=>all.push({m,x}));
+  const byGid=new Map(all.filter(o=>o.x.gid).map(o=>[o.x.gid,o]));
+  fetched.forEach(f=>{
+    if(ign.has(f.gid))return;
+    let o=byGid.get(f.gid);
+    if(!o){o=all.find(q=>!q.x.src&&q.x.d===f.d&&q.x.t===f.t);
+      if(o){o.x.src="gcal";o.x.gid=f.gid;byGid.set(f.gid,o);rep.adopted++}}
+    const mNew=+f.d.slice(5,7)-1;
+    if(o){const x=o.x;
+      if(x.d!==f.d||x.t!==f.t||x.h!==f.h||x.s!==f.s){x.d=f.d;x.t=f.t;x.h=f.h;x.s=f.s;rep.updated++}
+      if(o.m!==mNew){st.tur[o.m]=st.tur[o.m].filter(y=>y!==x);st.tur[mNew].push(x);o.m=mNew}
+    }else{const x={d:f.d,t:f.t,h:f.h,s:f.s,src:"gcal",gid:f.gid};st.tur[mNew].push(x);
+      const q={m:mNew,x};all.push(q);byGid.set(f.gid,q);rep.added++}});
+  rep.total=all.filter(o=>o.x.src==="gcal").length;
+  return rep}
+
+/* ---------- operaciones completas ---------- */
+/* Lee los 4 calendarios de turnos y los fusiona. Si cualquier lectura falla, NO cambia nada. */
+async function syncShifts(){
+  const find=await calendarFinder(),fetched=[],okTypes=new Set(),missing=[];let ignored=0;
+  for(const c of SHIFT_CALS){
+    const cal=find(c.name);if(!cal){missing.push(c.name);continue}
+    const evs=await listAllEvents(cal.id,SYNC_FROM,SYNC_TO);
+    (c.codes?["N3F","N3F1","N3F2"]:[c.type]).forEach(t=>okTypes.add(t));
+    evs.forEach(ev=>{const it=parseShift(c,ev,st.sync.exclude);if(it)fetched.push(it);else ignored++})}
+  const rep=mergeShifts(fetched,okTypes);
+  st.sync.last=Date.now();st.sync.n=rep.total;st.sync.rep=rep;
+  return{rep,missing,ignored}}
+
+/* Agenda en memoria (no se guarda): ventana móvil de -14 a +120 días. Cada calendario falla por separado. */
+let AGENDA=[];
+async function loadAgenda(){
+  const find=await calendarFinder(),out=[],errs=[],from=addDaysISO(-14),to=addDaysISO(120);
+  for(const c of AGENDA_CALS){
+    if(!st.sync.cal[c.key])continue;
+    const cal=find(c.name);if(!cal){errs.push(c.name+": no encuentro el calendario");continue}
+    try{(await listAllEvents(cal.id,from,to)).forEach(ev=>{const it=parseAgenda(c,ev);if(it)out.push(it)})}
+    catch(e){errs.push(c.name+": "+gcalErrorText(e));if(needsPermission(e))break}}
+  AGENDA=out;return{n:out.length,errs}}
+/* ===== js: 40-nucleo-ui.js ===== */
+/* Núcleo de la interfaz: registro de pestañas y tarjetas, refresco y avisos.
+   No contiene lógica de negocio. Cada pestaña se registra en su propio módulo:
+     registerTab({id,label,icon,cards:[{id,tone|cls}]})   -> estructura
+     R["c-xxx"]=()=>html                                  -> contenido de cada tarjeta
+     I.clave / C.clave                                    -> handlers de input / change (data-k)
+     A.accion                                             -> handlers de clic (data-a)
+     onMonthChange((mes,fecha)=>...)                      -> reaccionar al cambio de mes */
+let sel=new Date().getMonth(), tab="inicio";
+const TABS=[], R={}, I={}, C={}, A={}, HOOKS={month:[],ready:[]};
+const DAYMARKS=[];                                   /* (fechaISO)=>html : marcas extra en las celdas del calendario */
+const onReady=fn=>HOOKS.ready.push(fn);              /* se ejecuta cuando ya están cargados los datos guardados */
+function addCard(tabId,card,afterId){                /* inserta una tarjeta en la pestaña de otro módulo */
+  const t=TABS.find(x=>x.id===tabId);if(!t)return;
+  if(afterId==="end"){t.cards.push(card);return}       /* "end" = al final de la pestaña */
+  const i=afterId?t.cards.findIndex(c=>c.id===afterId):-1;t.cards.splice(i<0?0:i+1,0,card)}
+const onMonthChange=fn=>HOOKS.month.push(fn);
+function setMonth(m,date){sel=m;HOOKS.month.forEach(f=>f(m,date))}
+const registerTab=t=>{TABS.push(t)};
+
+/* piezas de maquetación compartidas */
+const band=(t,icon,title,tag)=>`<div class="band"><span class="bi">${ic(icon)}</span><h2>${title}</h2>${tag?`<span class="tag">${tag}</span>`:""}</div>`;
+const box=(t,lab,val,strong,id)=>`<div class="eqb t-${t}${strong?" strong":""}"><span>${lab}</span><b${id?` id="${id}"`:""} class="${val<-0.005?"neg":""}">${eur(val)}</b></div>`;
+const opr=(o,inner)=>`<div class="opr"><span class="op${o?"":" ghost"}">${o==="-"?"−":o==="="?"=":""}</span>${inner}</div>`;
+
+/* avisos visibles (también para errores: nada falla en silencio) */
+let toastTimer=null;
+function toast(msg,tone){const el=$("toast"),h=document.querySelector("header");if(h)el.style.top=(h.getBoundingClientRect().bottom+8)+"px";   /* justo debajo de la cabecera */
+  el.className="toast t-"+(tone||"mint")+" show";el.textContent=msg;
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>{el.className="toast"},2200)}
+function reportError(err){if(window.console)console.error(err);toast("Algo ha fallado: "+((err&&err.message)||err),"red")}
+
+function mountTabs(){
+  $("main").innerHTML=TABS.map(t=>`<section id="t-${t.id}" hidden>`+t.cards.map(c=>
+    `<div id="${c.id}" class="${c.cls||"card"}${c.tone?" t-"+c.tone:""}"></div>`).join("")+`</section>`).join("");
+  $("tabs").innerHTML=TABS.map(t=>`<button data-a="tab" data-v="${t.id}" aria-pressed="${t.id===tab}">${ic(t.icon)}<span class="lb">${t.label}</span></button>`).join("");
+}
+function strip(){
+  const el=$("strip");
+  if(!el.dataset.i){el.innerHTML=M.map((m,i)=>`<button data-a="mes" data-v="${i}">${S[i]}</button>`).join("");el.dataset.i=1}
+  el.querySelectorAll("button").forEach((b,i)=>{b.setAttribute("aria-pressed",i===sel);b.classList.toggle("done",st.cob[i]!=null)});
+  /* centra el mes activo, solo cuando cambia (para no pelearse con el dedo del usuario) */
+  if(el.dataset.last!==String(sel)){el.dataset.last=sel;const on=el.children[sel];
+    if(on)el.scrollLeft=on.offsetLeft-(el.clientWidth-on.offsetWidth)/2}}
+
+/* Redibuja la pestaña activa. `except` = tarjeta que se está editando (para no perder el foco). */
+function refresh(except){
+  strip();
+  TABS.forEach(t=>{$("t-"+t.id).hidden=(t.id!==tab)});
+  $("tabs").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===tab));
+  const cur=TABS.find(t=>t.id===tab);if(!cur)return;
+  cur.cards.forEach(c=>{if(c.id===except)return;const el=$(c.id);if(!el)return;
+    try{el.innerHTML=R[c.id]()}
+    catch(err){if(window.console)console.error(c.id,err);el.innerHTML=`<div class="body"><p class="err">Esta tarjeta ha fallado: ${esc(err.message)}</p></div>`}})}
+
+Object.assign(A,{
+  tab:b=>{tab=b.dataset.v;window.scrollTo(0,0)},
+  mes:b=>setMonth(+b.dataset.v)
+});
+/* ===== js: 41-eventos.js ===== */
+/* Despacho genérico de eventos. No se toca al añadir funciones: cada módulo registra sus handlers en I, C y A.
+   Atributos HTML:  data-k="clave"  -> handler I/C de un campo
+                    data-a="accion" -> handler A de un botón
+                    data-nr="1"     -> no redibujar la app después (lo gestiona el propio módulo) */
+
+/* Mientras se escribe: guarda el valor y redibuja el resto de tarjetas (nunca la que se edita). */
+document.addEventListener("input",e=>{
+  const t=e.target,k=t.dataset&&t.dataset.k;if(!k||!I[k])return;
+  try{I[k](t)}catch(err){reportError(err);return}
+  if(t.dataset.nr)return;
+  queue();const c=t.closest(".card");refresh(c&&c.id)});
+
+/* Al soltar el campo. IMPORTANTE: en los campos de texto no se redibuja aquí. En iPhone el 'change' llega
+   entre el toque y el 'click' del botón: si se redibuja, el botón desaparece y el clic se pierde. */
+document.addEventListener("change",e=>{
+  const t=e.target,k=t.dataset&&t.dataset.k;if(!k||t.dataset.nr)return;
+  if(C[k])try{C[k](t)}catch(err){reportError(err);return}
+  queue();
+  if(t.tagName==="TEXTAREA"||t.type==="text"||t.type==="number")return;
+  refresh()});
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;
+  const a=b.dataset.a;if(!A[a])return;
+  try{A[a](b)}catch(err){reportError(err);return}
+  if(!b.dataset.nr){queue();refresh()}});
+/* ===== js: 50-tab-inicio.js ===== */
+/* Pestaña INICIO: ingresos, gastos fijos, presupuesto (opción A/B), reparto, metas y año. */
+registerTab({id:"inicio",label:"Inicio",icon:"home",cards:[
+  {id:"c-res",cls:"restiles"},{id:"c-ing",tone:"green"},{id:"c-fix",tone:"lav"},{id:"c-bud",tone:"mint"},
+  {id:"c-rep",tone:"green"},{id:"c-goal",tone:"blue"},{id:"c-year",tone:"lav"}]});
+
+/* Resumen de arriba: cobrado (verde) y gastos fijos + lo gastado hasta ahora (rojo). */
+const resVals=i=>({c:cobrado(i),f:fijos(i),g:gastoMes(i)});
+R["c-res"]=()=>{const v=resVals(sel);
+  return `<div class="restile t-green"><span class="rl">Ingresos</span><b class="rv" id="resC">${eur(v.c)}</b></div>
+  <div class="restile t-red"><span class="rl">Gastos</span><b class="rv" id="resG">${eur(v.f+v.g)}</b></div>`};
+const liveRes=()=>{const v=resVals(sel);
+  if($("resC"))$("resC").textContent=eur(v.c);if($("resG"))$("resG").textContent=eur(v.f+v.g)};
+
+R["c-ing"]=()=>{const i=sel,e=estim(i),p=pay(i),prev=i>0?horasMes(i-1):{l:0,f:0};
+  const line=i===0?"Enero no trae turnos: faltan los datos de diciembre de 2025.":
+    (prev.l+prev.f)?`Esta nómina trae los turnos de ${M[i-1].toLowerCase()}: ${prev.l} h laborables y ${prev.f} h festivas, ${eur(p.plus)} brutos.`
+    :`Sin turnos en ${M[i-1].toLowerCase()}: esta nómina no trae atención continuada.`;
+  return band("green","coin","Ingresos",M[i])+`<div class="body" style="padding-right:84px;min-height:150px">${MASC.purse}
+  <label class="biglab" for="cob">Este mes he cobrado</label>
+  <div class="bigin left"><input id="cob" data-k="cob" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${st.cob[i]!=null?fmtIn(st.cob[i]):""}"><span>€</span></div>
+  <button class="pill" data-a="est">${st.cob[i]!=null?"Borrar y usar la estimación":"Usar la estimación de "+eur(e)}</button>
+  <p class="hint">${line}</p></div>`};
+
+R["c-fix"]=()=>{const rs=rows(sel);
+  let h=band("lav","card","Gastos fijos",eur(fijos(sel)))+`<div class="body">`;
+  GR.forEach(([g,n,t])=>{const L=rs.filter(r=>r.g===g);if(!L.length)return;
+    const sub=L.reduce((a,r)=>a+(r.k==="sub"&&!r.on?0:r.a),0);
+    h+=`<div class="grp t-${t}"><div class="gh"><span>${n}</span><b>${eur(sub)}</b></div>`;
+    L.forEach(r=>{const off=r.k==="sub"&&!r.on;
+      const meta=r.k==="util"?`recibo ${eur(r.base)} × ${st.fact.toFixed(2).replace(".",",")}`:r.k==="sub"?(r.anual?"cargo anual":"mensual"):"";
+      h+=`<div class="row${off?" off":""}"><span class="bub t-${t}">${ic(r.ic)}</span>
+        <span class="tx"><span class="nm">${r.nm}</span>${meta?`<span class="mt">${meta}</span>`:""}</span>
+        <span class="am">${eur(r.a)}</span>${r.k==="sub"?`<button class="sw" data-a="sub" data-x="${r.x}" aria-pressed="${r.on}" aria-label="${r.on?"Apagar":"Encender"} ${r.nm}"></button>`:""}</div>`});
+    h+=`</div>`});
+  return h+`</div>`};
+R["c-bud"]=()=>{const i=sel,c=cobrado(i),f=fijos(i),p=prov(i),d=c-f-p,a=ahorroAnt(i),b=d-a;
+  return band("mint","flag","Tu presupuesto")+`<div class="body">
+  <div class="mrow"><p class="sub">Opción A · lo que queda tras fijos y Hacienda</p>${MASC.sack}</div>
+  <div class="eqcol">${opr("",box("green","Ingresos",c))}${opr("-",box("lav","Gastos fijos",f))}${opr("-",box("red","Hacienda (apartar)",p))}${opr("=",box("mint","Disponible",d,true))}</div>
+  <p class="sub" style="margin-top:18px">Opción B · ahorra de antemano y vive con el resto</p>
+  <div class="fld"><label for="ahp">Ahorro de antemano <b id="ahv">${st.ahorroPct} %</b></label>
+  <input id="ahp" data-k="ahorro" type="range" min="0" max="80" step="5" value="${st.ahorroPct}"></div>
+  <div class="eqcol">${opr("-",box("yel","Ahorro de antemano",a,false,"ahA"))}${opr("=",box("mint","Para vivir este mes",b,true,"ahB"))}</div></div>`};
+R["c-rep"]=()=>{const i=sel,w=wBud(i);
+  return band("green","cart","Reparto para vivir",eur0(Math.max(0,presup(sel))))+`<div class="body">`+CK.map(c=>{const v=CAT[c],b=catBud(i,c);
+    return `<div class="row"><span class="bub t-${v.t}">${ic(v.ic)}</span><span class="tx"><span class="nm">${v.n}</span>
+      <span class="mt">${eur(w*st.cat[c]/catSum())} por semana · ${Math.round(st.cat[c]/catSum()*100)} %</span></span><span class="am">${eur(b)}</span></div>`}).join("")+`</div>`};
+R["c-goal"]=()=>band("blue","flag","Metas del mes",M[sel])+`<div class="body">`+[0,1,2].map(n=>
+  `<div class="fld"><input type="text" data-k="goal" data-n="${n}" placeholder="Meta ${n+1}" value="${esc(st.goals[sel][n])}"></div>`).join("")+`</div>`;
+R["c-year"]=()=>{const ds=M.map((_,k)=>disp(k)),mx=Math.max(...ds.map(Math.abs),1);
+  return band("lav","cal","El año de un vistazo")+`<div class="body">`+M.map((m,k)=>
+    `<div class="yrow${k===sel?" cur":""}${ds[k]<0?" neg":""}"><span class="mn">${S[k]}</span><span class="tr"><span class="fl" style="width:${Math.abs(ds[k])/mx*100}%"></span></span><span class="vv ${ds[k]<0?"neg":""}">${eur0(ds[k])}</span></div>`).join("")+
+    `<p class="hint">Disponible de cada mes antes de ahorrar.</p></div>`};
+
+/* actualiza en vivo las cajas de la opción B mientras se mueve el deslizador */
+const liveBud=()=>{const d=disp(sel),a=Math.max(0,d)*st.ahorroPct/100;
+  if($("ahA"))$("ahA").textContent=eur(a);if($("ahB"))$("ahB").textContent=eur(d-a)};
+
+Object.assign(I,{
+  cob:t=>{const v=t.value.trim();st.cob[sel]=v===""?null:Math.max(0,num(v));liveRes()},
+  goal:t=>{st.goals[sel][+t.dataset.n]=t.value},
+  ahorro:t=>{st.ahorroPct=+t.value;$("ahv").textContent=st.ahorroPct+" %";liveBud()}
+});
+Object.assign(A,{
+  est:()=>{st.cob[sel]=st.cob[sel]!=null?null:+estim(sel).toFixed(2)},
+  sub:b=>{const x=+b.dataset.x;st.on[x]=!st.on[x]}
+});
+/* ===== js: 51-tab-diario.js ===== */
+/* Pestaña DIARIO: apuntar gastos, presupuesto por categoría, semana y resumen. */
+registerTab({id:"diario",label:"Diario",icon:"pencil",cards:[
+  {id:"c-add",tone:"yel"},{id:"c-cats",cls:"catgrid"},{id:"c-wk",tone:"pink"},{id:"c-sum",tone:"lav"}]});
+
+let draft={c:"surv",s:"Alimentación",d:dateIn(sel),a:"",n:"",err:""};
+let selWeek=defWeek(sel);
+const weekOf=(m,d)=>{const k=weeks(m).findIndex(w=>{const[a,b]=lim(m,w);return d>=a&&d<=b});return k<0?0:k};
+onMonthChange((m,date)=>{draft.d=dateIn(m);selWeek=date?weekOf(m,date):defWeek(m)});
+
+/* últimos apuntes del mes: confirman a simple vista que el gasto se ha guardado */
+const lastEntries=(i,n)=>dEntries(i).slice().sort((a,b)=>b.id-a.id).slice(0,n);
+
+R["c-add"]=()=>{const c=CAT[draft.c],last=lastEntries(sel,3);
+  return band("yel","pencil","Apunta un gasto")+`<div class="body">
+  <div class="bigin small"><input id="dAmt" data-k="dAmt" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" value="${esc(draft.a)}"><span>€</span></div>
+  ${draft.err?`<p class="err" role="alert">${esc(draft.err)}</p>`:""}
+  <div class="chips">${CK.map(k=>{const v=CAT[k];return `<button class="chip t-${v.t}${k===draft.c?" on":""}" data-a="dcat" data-v="${k}">${ic(v.ic)}${v.n}</button>`}).join("")}</div>
+  <div class="chips">${c.subs.map(([n,icn])=>`<button class="chip t-${c.t}${n===draft.s?" on":""}" data-a="dsub" data-v="${n}">${ic(icn)}${n}</button>`).join("")}</div>
+  <div class="two"><input type="date" id="dDate" data-k="dDate" value="${draft.d}"><input type="text" id="dNote" data-k="dNote" placeholder="Nota (opcional)" value="${esc(draft.n)}"></div>
+  <button class="cta" data-a="dadd">${ic("plus")} Apuntar gasto</button>
+  <button class="pill" data-a="wopen" data-nr="1" style="margin-top:10px;width:100%">${ic("spark")} Antes de comprar: ¿ahorro o me lo gasto?</button>
+  ${last.length?`<div class="sub" style="margin:16px 0 0">Últimos apuntes de ${M[sel].toLowerCase()}</div>`+last.map(e=>{const v=CAT[e.c];
+    return `<div class="row"><span class="bub t-${v.t}">${ic(subIcon(e.c,e.s))}</span><span class="tx"><span class="nm">${e.s}${e.n?" · "+esc(e.n):""}</span><span class="mt">${fmtD(e.d)}</span></span><span class="am">${eur(e.a)}</span></div>`}).join(""):""}
+  </div>`};
+
+R["c-cats"]=()=>CK.map(k=>{const v=CAT[k],b=catBud(sel,k),s=spent(sel,k),r=b-s,pct=b>0?Math.min(100,s/b*100):(s>0?100:0);
+  return `<div class="cat t-${v.t}${r<-0.005?" over":""}"><div class="ch"><span class="bub t-${v.t}">${ic(v.ic)}</span><span class="cn">${v.n}</span></div>
+    <div class="cv">${eur0(s)}<small> / ${eur0(b)}</small></div><div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="cr ${r<-0.005?"neg":""}">${r>=-0.005?"Te quedan "+eur(Math.max(0,r)):"Te pasas "+eur(-r)}</div></div>`}).join("");
+R["c-wk"]=()=>{const i=sel,ws=weeks(i),k=Math.min(selWeek,ws.length-1),w=ws[k];
+  const es=wEntries(i,w).slice().sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id),tot=es.reduce((a,e)=>a+e.a,0),wb=wBud(i);
+  let h=band("pink","pencil","Diario semanal",M[i])+`<div class="body"><div class="chips" style="margin-top:0">`+
+    ws.map((x,j)=>`<button class="chip${j===k?" on":""}" data-a="sweek" data-v="${j}">S${x.n}</button>`).join("")+`</div>
+    <div class="kv"><div><span class="l">Gastado esta semana<small>${fmtD(lim(i,w)[0])} a ${fmtD(lim(i,w)[1])}</small></span><span class="v">${eur(tot)}</span></div>
+    <div><span class="l">Presupuesto semanal</span><span class="v">${eur(wb)}</span></div>
+    <div class="big"><span class="l">${tot<=wb+0.005?"Te quedan":"Te pasas"}</span><span class="v ${tot<=wb+0.005?"pos":"neg"}">${eur(Math.abs(wb-tot))}</span></div></div>`;
+  if(!es.length)h+=`<p class="hint">Sin gastos esta semana. Apunta el primero arriba.</p>`;
+  else{let last="";h+=`<div style="margin-top:12px">`;es.forEach(e=>{
+    if(e.d!==last){last=e.d;h+=`<div class="sub" style="margin:10px 0 2px">${dayLab(e.d)}</div>`}
+    const v=CAT[e.c];h+=`<div class="row"><span class="bub t-${v.t}">${ic(subIcon(e.c,e.s))}</span><span class="tx"><span class="nm">${e.s}${e.n?" · "+esc(e.n):""}</span><span class="mt">${v.n}</span></span>
+      <span class="am">${eur(e.a)}</span><button class="del" data-a="ddel" data-id="${e.id}" aria-label="Borrar gasto">${ic("x")}</button></div>`});h+=`</div>`}
+  return h+`</div>`};
+R["c-sum"]=()=>{const i=sel,ws=weeks(i);
+  let h=band("lav","doc","Resumen de gastos",M[i])+`<div class="body"><table class="tbl"><thead><tr><th>Sem.</th>`+
+    CK.map(c=>`<th class="c-${CAT[c].t}">${CAT[c].n.split(" ")[0]}</th>`).join("")+`<th>Total</th></tr></thead><tbody>`;
+  ws.forEach(w=>{const es=wEntries(i,w);h+=`<tr><td>S${w.n}</td>`+CK.map(c=>`<td>${eur0(es.filter(e=>e.c===c).reduce((a,e)=>a+e.a,0))}</td>`).join("")+
+    `<td>${eur0(es.reduce((a,e)=>a+e.a,0))}</td></tr>`});
+  h+=`<tr class="tot"><td>Total</td>`+CK.map(c=>`<td>${eur0(spent(i,c))}</td>`).join("")+`<td>${eur0(dEntries(i).reduce((a,e)=>a+e.a,0))}</td></tr></tbody></table></div>`;
+  return h};
+
+Object.assign(I,{
+  dAmt:t=>{draft.a=t.value;if(draft.err){draft.err="";const e=document.querySelector("#c-add .err");if(e)e.remove()}},
+  dNote:t=>{draft.n=t.value},
+  dDate:t=>{draft.d=t.value}
+});
+Object.assign(A,{
+  dcat:b=>{draft.c=b.dataset.v;draft.s=CAT[draft.c].subs[0][0]},
+  dsub:b=>{draft.s=b.dataset.v},
+  sweek:b=>{selWeek=+b.dataset.v},
+  ddel:b=>{const id=+b.dataset.id;st.diary.forEach(L=>{const k=L.findIndex(x=>x.id===id);if(k>=0)L.splice(k,1)})},
+  /* Apuntar gasto: lee los campos en el momento del clic y explica siempre qué ha pasado */
+  dadd:()=>{
+    const raw=$("dAmt")?$("dAmt").value:draft.a, a=num(raw);
+    const d=(($("dDate")&&$("dDate").value)||draft.d||dateIn(sel));
+    draft.a=raw;draft.d=d;
+    const fail=msg=>{draft.err=msg;setTimeout(()=>{const el=$("dAmt");if(el)el.focus()},0)};
+    if(!(a>0))return fail("Escribe el importe del gasto, por ejemplo 12,50.");
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||+d.slice(0,4)!==YEAR)return fail("La fecha debe ser de "+YEAR+".");
+    const m=+d.slice(5,7)-1;
+    (st.diary[m]=st.diary[m]||[]).push({id:Date.now()+Math.random(),d,c:draft.c,s:draft.s,a:Math.round(a*100)/100,n:draft.n.trim()});
+    draft.a="";draft.n="";draft.err="";
+    setMonth(m,d);                       /* salta al mes y a la semana del gasto: se ve donde cae */
+    toast("Apuntado "+eur(Math.round(a*100)/100)+" en "+draft.s,"mint");
+  }
+});
+/* ===== js: 52-tab-turnos.js ===== */
+/* Pestaña TURNOS: calendario, edición de turnos y su cálculo de nómina. */
+registerTab({id:"turnos",label:"Turnos",icon:"cal",cards:[
+  {id:"c-cal",tone:"blue"},{id:"c-tl",tone:"lav"},{id:"c-ts",tone:"mint"}]});
+
+let selDay=dateIn(sel);
+onMonthChange(m=>{selDay=dateIn(m)});
+
+R["c-cal"]=()=>{const i=sel,ws=weeks(i),L=st.tur[i]||[];
+  let h=band("blue","cal","Calendario de turnos",M[i])+`<div class="body"><div class="cal"><div class="cdow"><span></span>${["L","M","X","J","V","S","D"].map(d=>`<span>${d}</span>`).join("")}</div>`;
+  ws.forEach(w=>{h+=`<div class="crow"><span class="cwn">${w.n}</span>`;
+    for(let k=0;k<7;k++){const d=new Date(w.s);d.setDate(d.getDate()+k);const id=iso(d),inM=d.getMonth()===i;
+      const sh=inM?L.filter(x=>x.d===id):[];
+      h+=`<button class="cd${inM?"":" out"}${esFest(d)?" fest":""}${id===selDay?" sel":""}${id===TODAY?" today":""}" data-a="day" data-d="${id}" aria-label="${id}"><span class="dn">${d.getDate()}</span>${sh.map(x=>`<span class="pl t-${TIPO[x.t][4]}">${TIPO[x.t][5]}</span>`).join("")}${DAYMARKS.map(f=>f(id)).join("")}</button>`}
+    h+=`</div>`});
+  return h+`</div><p class="hint">Domingos y festivos en rojo. Toca un día y pulsa Añadir turno.</p>
+    <button class="cta" data-a="tadd">${ic("plus")} Añadir turno el ${dayLab(selDay)}</button></div>`};
+
+/* línea de resultado de un turno (también se actualiza en vivo al editar horas) */
+const tuRes=x=>{const p=partir(x);return `${p.l} h laborables · ${p.f} h festivas · <b>${eur(p.imp)}</b>${x.src==="gcal"?" · de Google Calendar":""}${x.nota?`<br>${esc(x.nota)}`:""}`};
+
+R["c-tl"]=()=>{const i=sel,L=st.tur[i]||[];
+  const opts=Object.entries(TIPO).map(([k,v])=>`<option value="${k}">${k==="AC"?"Atención cont.":v[1].replace(/ \(.*\)/,"")}</option>`).join("");
+  let h=band("lav","pulse","Turnos de "+M[i].toLowerCase(),L.length+"")+`<div class="body">`;
+  if(!L.length)h+=`<p class="hint" style="margin-top:0">No hay turnos registrados este mes.</p>`;
+  L.forEach((x,n)=>{const t=TIPO[x.t],manual=x.ml!=null||x.mf!=null;
+    h+=`<div class="tu t-${t[4]}"><div class="top"><span class="bub t-${t[4]}">${ic(t[0])}</span>
+      <select data-k="tu" data-f="t" data-n="${n}" aria-label="Tipo de turno">${opts.replace(`value="${x.t}"`,`value="${x.t}" selected`)}</select>
+      <button class="del" data-a="tdel" data-n="${n}" aria-label="Borrar turno">${ic("x")}</button></div>
+      <div class="g"><div><label>Fecha</label><input type="date" data-k="tu" data-f="d" data-n="${n}" value="${x.d}"></div>
+      <div><label>Inicio</label><input type="number" min="0" max="23" data-k="tu" data-f="s" data-n="${n}" value="${x.s}" ${manual?"disabled":""}></div>
+      <div><label>Horas</label><input type="number" min="1" max="24" data-k="tu" data-f="h" data-n="${n}" value="${x.h}" ${manual?"disabled":""}></div></div>
+      <div class="res" id="tr-${n}">${tuRes(x)}</div></div>`});
+  return h+`</div>`};
+
+R["c-ts"]=()=>{const i=sel,hm=horasMes(i),pl=plusMes(i),nx=(i+1)%12,t=SISCAT[st.R];
+  return band("mint","coin","Cuánto suman",M[i])+`<div class="body"><div class="kv">
+    <div><span class="l">Horas trabajadas</span><span class="v">${hm.l+hm.f} h</span></div>
+    <div><span class="l">Laborables<small>${eur(t.lab)} por hora</small></span><span class="v">${hm.l} h</span></div>
+    <div><span class="l">Festivas<small>${eur(t.fes)} por hora</small></span><span class="v">${hm.f} h</span></div>
+    <div class="big"><span class="l">Plus bruto del mes</span><span class="v pos">${eur(pl)}</span></div>
+    ${i<11?`<div><span class="l">Nómina de ${M[nx].toLowerCase()}<small>neto estimado</small></span><span class="v">${eur(estim(nx))}</span></div>`:`<div><span class="l">Se cobra en enero de 2027</span><span class="v">—</span></div>`}</div>
+    <div class="check">${(hm.l+hm.f)===0?`Sin turnos en ${M[i].toLowerCase()}: el recibo siguiente no debe traer atención continuada.`:
+    `En el recibo de ${i<11?M[nx].toLowerCase():"enero"} comprueba:<br>Atención continuada laborable: <b>${hm.l},00 × ${eur(t.lab)} = ${eur(hm.l*t.lab)}</b><br>Atención continuada DS/DG/festius: <b>${hm.f},00 × ${eur(t.fes)} = ${eur(hm.f*t.fes)}</b><br>Si las horas no coinciden, reclama a Gestió de Persones.`}</div></div>`};
+
+Object.assign(I,{
+  tu:t=>{const n=+t.dataset.n,x=st.tur[sel][n],f=t.dataset.f;
+    if(f==="t"){x.t=t.value;x.h=TIPO[x.t][2];x.s=TIPO[x.t][3]}else if(f==="d")x.d=t.value;else x[f]=Math.max(0,num(t.value));
+    const r=$("tr-"+n);if(r)r.innerHTML=tuRes(x)}
+});
+/* si se cambia la fecha a otro mes, el turno se mueve a ese mes */
+Object.assign(C,{
+  tu:t=>{if(t.dataset.f!=="d")return;const L=st.tur[sel],n=+t.dataset.n,x=L[n];
+    if(!x||!x.d)return;const m=+x.d.slice(5,7)-1;
+    if(+x.d.slice(0,4)===YEAR&&m!==sel&&m>=0&&m<12){L.splice(n,1);(st.tur[m]=st.tur[m]||[]).push(x)}}
+});
+Object.assign(A,{
+  day:b=>{selDay=b.dataset.d},
+  tadd:()=>{const d=+selDay.slice(5,7)-1===sel?selDay:dateIn(sel);
+    (st.tur[sel]=st.tur[sel]||[]).push({d,t:"N3F",h:TIPO.N3F[2],s:TIPO.N3F[3]})},
+  tdel:b=>{const x=st.tur[sel][+b.dataset.n];
+    if(x&&x.src==="gcal"&&x.gid)st.sync.ign.push(x.gid);   /* borrado a propósito: la sincronización no lo vuelve a traer */
+    st.tur[sel].splice(+b.dataset.n,1)}
+});
+/* ===== js: 53-tab-cierre.js ===== */
+/* Pestaña CIERRE: semanas, presupuesto - gasto = ahorro, tarjeta de crédito, reflexión, colchón. */
+registerTab({id:"cierre",label:"Cierre",icon:"flag",cards:[
+  {id:"c-cwk",tone:"yel"},{id:"c-eq",tone:"mint"},{id:"c-cc",tone:"red"},
+  {id:"c-ref",tone:"pink"},{id:"c-col",tone:"blue"},{id:"c-tip",cls:"tip"}]});
+
+R["c-cwk"]=()=>{const i=sel,ws=weeks(i);
+  return band("yel","pencil","Tus gastos semanales",M[i])+`<div class="body"><div class="wks">`+ws.map(w=>
+    `<div class="wkb t-yel"><small>S${w.n}</small><b>${eur0(wEntries(i,w).reduce((a,e)=>a+e.a,0))}</b></div>`).join("")+
+    `<div class="wkb t-pink"><small>Tarjeta</small><b>${eur0(cardTot(i))}</b></div>
+    <div class="wkb t-mint"><small>Total</small><b>${eur0(gastoMes(i))}</b></div></div></div>`};
+R["c-eq"]=()=>{const i=sel,p=presup(i),g=gastoMes(i),f=ahorroFinal(i),a=ahorroAnt(i);
+  return band("mint","flag","Final de mes",M[i])+`<div class="body">
+  <div class="mrow"><p class="sub">Presupuesto menos gasto, igual a tu ahorro</p>${MASC.coin}</div>
+  <div class="eqcol">${opr("",box("mint","Presupuesto inicial",p))}${opr("-",box("yel","Total gasto mensual",g))}${opr("=",box("red","Tu ahorro",f,true))}</div>
+  <div class="kv" style="margin-top:12px"><div><span class="l">Ahorro de antemano</span><span class="v">${eur(a)}</span></div>
+  <div><span class="l">Sobrante del mes</span><span class="v ${f<0?"neg":"pos"}">${eur(f)}</span></div>
+  <div class="big"><span class="l">Ahorrado este mes</span><span class="v ${a+f<0?"neg":"pos"}">${eur(a+Math.max(f,-a))}</span></div></div></div>`};
+
+R["c-cc"]=()=>{const i=sel,L=st.cards[i]||[];
+  let h=band("red","card","Tarjeta de crédito",M[i])+`<div class="body">`;
+  if(!L.length)h+=`<p class="hint" style="margin-top:0">Anota aquí lo que pagues con tarjeta, no en el diario, para no contarlo dos veces.</p>`;
+  L.forEach((x,n)=>{h+=`<div class="ccrow"><div class="ccg">
+    <div><label>Día de uso</label><input type="date" data-k="cc" data-f="dia" data-n="${n}" value="${esc(x.dia)}"></div>
+    <div><label>Día de pago</label><input type="date" data-k="cc" data-f="pago" data-n="${n}" value="${esc(x.pago)}"></div>
+    <div><label>Tarjeta</label><input type="text" data-k="cc" data-f="tarjeta" data-n="${n}" value="${esc(x.tarjeta)}"></div>
+    <div><label>Concepto</label><input type="text" data-k="cc" data-f="concepto" data-n="${n}" value="${esc(x.concepto)}"></div>
+    <div><label>Interés (€)</label><input type="text" inputmode="decimal" autocomplete="off" data-k="cc" data-f="interes" data-n="${n}" value="${x.interes?fmtIn(x.interes):""}"></div>
+    <div><label>Importe (€)</label><input type="text" inputmode="decimal" autocomplete="off" data-k="cc" data-f="importe" data-n="${n}" value="${x.importe?fmtIn(x.importe):""}"></div>
+    <div class="full" style="text-align:right"><button class="pill" data-a="cdel" data-n="${n}">${ic("x")} Quitar</button></div></div></div>`});
+  return h+`<button class="cta" data-a="cadd">${ic("plus")} Añadir cargo</button>
+    <div class="kv" style="margin-top:10px"><div class="big"><span class="l">Total en tarjeta</span><span class="v" id="ccT">${eur(cardTot(i))}</span></div></div></div>`};
+
+R["c-ref"]=()=>{const i=sel,r=refl(i),f=ahorroFinal(i),auto=gastoMes(i)===0?"Aún no hay gastos apuntados.":(f>=0?"La app dice que sí: te sobran "+eur(f)+".":"La app dice que no: te has pasado "+eur(-f)+".");
+  const qa=(q,txt,hint)=>`<div class="q"><p>${txt}</p><div class="qa">${["Sí","No","Casi"].map(v=>`<button class="${r[q]===v?"on":""}" data-a="rq" data-q="${q}" data-v="${v}">${v}</button>`).join("")}</div>${hint?`<div class="auto">${hint}</div>`:""}</div>`;
+  const goals=st.goals[i].filter(g=>g.trim());
+  return band("pink","heart","Cómo ha ido",M[i])+`<div class="body">
+  ${goals.length?`<p class="sub">Tus metas: ${goals.map(esc).join(" · ")}</p>`:""}
+  ${qa("q1","¿Has conseguido tus objetivos del mes?")}${qa("q2","¿Has cumplido tus promesas?")}${qa("q3","¿Has mantenido tu ahorro inicial intacto?",auto)}
+  <textarea data-k="rt" placeholder="Reflexiona sobre aciertos, fallos y qué cambiarías el mes que viene.">${esc(r.txt)}</textarea></div>`};
+R["c-col"]=()=>{const i=sel,a=ahorroAnt(i)+Math.max(0,ahorroFinal(i));
+  const avg=M.reduce((s,_,k)=>s+fijos(k),0)/12,meta=6*(avg+Math.max(0,presup(i)));
+  return band("blue","shield","Colchón de emergencia")+`<div class="body"><div class="kv">
+    <div><span class="l">Objetivo<small>6 meses de gastos fijos más tu presupuesto para vivir</small></span><span class="v">${eur(meta)}</span></div>
+    <div><span class="l">Ahorro de este mes</span><span class="v">${eur(a)}</span></div>
+    <div class="big"><span class="l">A este ritmo</span><span class="v">${a>0?Math.ceil(meta/a)+" meses":"—"}</span></div></div></div>`};
+
+const TIPS=["No hagas la compra con hambre y apunta lo que te falta antes de salir: el diario te lo agradecerá.",
+ "Si una compra te da vueltas, espera siete días. Lo que sigue apeteciendo se compra mejor.",
+ "Págate a ti primero: el ahorro de antemano sale el día que cobras, no lo que sobre a final de mes.",
+ "Revisa las suscripciones cada trimestre. Lo que no usaste en tres meses sobra."];
+R["c-tip"]=()=>`<b>Consejo</b><p>${TIPS[sel%TIPS.length]}</p>`;
+
+Object.assign(I,{
+  cc:t=>{const x=st.cards[sel][+t.dataset.n],f=t.dataset.f;
+    x[f]=(f==="interes"||f==="importe")?Math.max(0,num(t.value)):t.value;
+    if($("ccT"))$("ccT").textContent=eur(cardTot(sel))},
+  rt:t=>{refl(sel).txt=t.value}
+});
+Object.assign(A,{
+  cadd:()=>{(st.cards[sel]=st.cards[sel]||[]).push({dia:dateIn(sel),tarjeta:"",concepto:"",pago:"",interes:0,importe:0})},
+  cdel:b=>{st.cards[sel].splice(+b.dataset.n,1)},
+  rq:b=>{const r=refl(sel),q=b.dataset.q;r[q]=r[q]===b.dataset.v?null:b.dataset.v}
+});
+/* ===== js: 54-tab-ajustes.js ===== */
+/* Pestaña AJUSTES: residencia, nómina, sábados, impuestos, consumo y reparto del presupuesto. */
+registerTab({id:"ajustes",label:"Ajustes",icon:"gear",cards:[
+  {id:"c-s1",tone:"mint"},{id:"c-s2",tone:"green"},{id:"c-s3",tone:"yel"},{id:"c-s4",tone:"lav"},
+  {id:"c-s5",tone:"blue"},{id:"c-s6",tone:"green"},{id:"c-s7",tone:"red"}]});
+
+R["c-s1"]=()=>band("mint","cross","Año de residencia")+`<div class="body"><div class="seg">${Object.keys(SISCAT).map(r=>
+  `<button data-a="lvl" data-v="${r}" aria-pressed="${r===st.R}">${r}</button>`).join("")}</div>
+  <p class="hint">${eur(SISCAT[st.R].m)} de base · ${eur(SISCAT[st.R].lab)}/h laborable · ${eur(SISCAT[st.R].fes)}/h festiva.</p></div>`;
+R["c-s2"]=()=>{const p=pay(sel);
+  const L=(a,b,c)=>`<div><span class="l">${a}</span><span class="v ${c||""}">${b}</span></div>`;
+  return band("green","doc","Nómina de "+M[sel].toLowerCase(),sel>0?"turnos de "+S3[sel-1]:"")+`<div class="body"><div class="kv">
+    ${L("Salari base",eur(st.base))}${L("Captació MIR",eur(st.capt))}${L("Atenció continuada",eur(p.plus))}
+    ${L("Plus vacances ("+st.pvacPct.toFixed(2).replace(".",",")+" %)",eur(p.pvac))}${L("Reducció DL3/2010",eur(p.red),"neg")}
+    ${p.ex?L("Paga extra",eur(p.ex)):""}
+    <div class="big"><span class="l">Total meritacions</span><span class="v">${eur(p.deveng)}</span></div>
+    ${L("Base SS (con prorrata de "+eur(st.prorr)+")",eur(p.baseSS))}
+    ${L("Seguretat Social "+pc(st.ss),"−"+eur(p.ss),"neg")}${L("IRPF "+pc(st.irpf),"−"+eur(p.irpf),"neg")}
+    <div class="big"><span class="l">Líquid a percebre</span><span class="v pos">${eur(p.neto)}</span></div></div>
+    <p class="hint">Captació y plus vacances salen de los recibos de agosto y septiembre: el plus vacances es el 9,09 % de la atención continuada.</p></div>`};
+R["c-s3"]=()=>{let t=0;for(let k=0;k<12;k++)t+=plusMes(k);
+  return band("yel","cal","Tarifa de los sábados")+`<div class="body"><div class="row" style="border:0;padding:0"><span class="tx"><span class="nm">Pagar sábados como festivo</span>
+  <span class="mt">ahora: ${st.sabFest?"festivo, "+eur(SISCAT[st.R].fes):"laborable, "+eur(SISCAT[st.R].lab)} por hora</span></span>
+  <button class="sw" data-a="sab" aria-pressed="${st.sabFest}" aria-label="Sábados como festivo"></button></div>
+  <p class="hint">Con este criterio, los turnos del año suman ${eur(t)} brutos de plus. Confírmalo con un recibo.</p></div>`};
+R["c-s4"]=()=>band("lav","bank","Impuestos")+`<div class="body">
+  <div class="fld"><label for="irf">IRPF que te retienen <b id="irv">${pc(st.irpf)}</b></label><input id="irf" data-k="irpf" type="range" min="0" max="35" step="0.25" value="${st.irpf}"></div>
+  <div class="fld"><label for="irr">IRPF real estimado del año <b id="irrv">${pc(st.irpfR)}</b></label><input id="irr" data-k="irpfR" type="range" min="0" max="35" step="0.5" value="${st.irpfR}"></div>
+  <p class="hint">Con ${eur(pay(sel).brutoAno)} de bruto anual, la diferencia entre lo que te retienen y lo que te toca son ${eur(prov(sel))} este mes. Se paga en la renta de 2027: apártalo aparte.</p></div>`;
+R["c-s5"]=()=>{const b=[ENERGIA,NATURGY,AIGUES,AQUATEC].reduce((a,d)=>a+Object.values(d).reduce((x,y)=>x+y,0),0);
+  return band("blue","bolt","Consumo de la casa")+`<div class="body"><div class="fld"><label for="fc">Factor luz, gas y agua <b id="fv">${st.fact.toFixed(2).replace(".",",")} ×</b></label>
+  <input id="fc" data-k="fact" type="range" min="1" max="2.5" step="0.05" value="${st.fact}"></div>
+  <p class="hint">Recibos reales de ${eur(b)} al año, ${eur(b*st.fact)} con 3 personas (${eur(b*st.fact/12)} al mes).</p></div>`};
+R["c-s6"]=()=>band("green","cart","Reparto del presupuesto")+`<div class="body">`+CK.map(c=>{const v=CAT[c];
+  return `<div class="fld"><label for="cs-${c}">${v.n} <b id="cv-${c}">${Math.round(st.cat[c]/catSum()*100)} %</b></label>
+  <input id="cs-${c}" data-k="cat" data-c="${c}" type="range" min="0" max="100" step="5" value="${st.cat[c]}"></div>`}).join("")+
+  `<p class="hint">Reparte lo que queda tras ahorrar. Los cuatro se reajustan para sumar 100 %.</p></div>`;
+R["c-s7"]=()=>band("red","shield","Aviso")+`<div class="body"><p class="note">Cálculo aproximado y no vinculante. No es asesoramiento fiscal: para cifras exactas, consulta tu nómina o tu gestoría. Retribuciones según «Retribucions personal en formació», CAPSBE, 15 de junio de 2026. Gastos calculados con tus recibos de julio de 2025 a julio de 2026.</p></div>`;
+
+Object.assign(I,{
+  irpf:t=>{st.irpf=+t.value;$("irv").textContent=pc(st.irpf)},
+  irpfR:t=>{st.irpfR=+t.value;$("irrv").textContent=pc(st.irpfR)},
+  fact:t=>{st.fact=+t.value;$("fv").textContent=st.fact.toFixed(2).replace(".",",")+" ×"},
+  cat:t=>{st.cat[t.dataset.c]=+t.value;CK.forEach(c=>{$("cv-"+c).textContent=Math.round(st.cat[c]/catSum()*100)+" %"})}
+});
+Object.assign(A,{
+  lvl:b=>{st.R=b.dataset.v},
+  sab:()=>{st.sabFest=!st.sabFest}
+});
+/* ===== js: 56-sync-ui.js ===== */
+/* Pantalla de la sincronización con Google Calendar: tarjeta de estado, agenda y marcas en el calendario.
+   La tarjeta de estado va al final de Ajustes y la agenda a Turnos, sin tocar sus módulos (addCard). La lógica está en 33-sync-gcal.js. */
+addCard("ajustes",{id:"c-sync",tone:"blue"},"end");     /* Ajustes, abajo del todo */
+addCard("turnos",{id:"c-agenda",tone:"mint"},"c-cal");
+
+let syncing=false, syncMsg=null;   /* syncMsg: {tone:"mint"|"yel"|"red", text, perm?} */
+
+const timeAgo=ts=>{const m=Math.round((Date.now()-ts)/6e4);
+  if(m<1)return "ahora mismo";if(m<60)return "hace "+m+" min";
+  const h=Math.round(m/60);if(h<24)return "hace "+h+" h";const d=Math.round(h/24);return "hace "+d+(d===1?" día":" días")};
+
+R["c-sync"]=()=>{const s=st.sync,rep=s.rep,avail=typeof claude!=="undefined";
+  const tag=syncing?"sincronizando":(s.last?timeAgo(s.last):"sin sincronizar");
+  const opt=(v,t)=>`<option value="${v}"${s.freq===v?" selected":""}>${t}</option>`;
+  const cls={red:"err",yel:"warnmsg",mint:"okmsg"};
+  return band("blue","cal","Google Calendar",tag)+`<div class="body">
+  <p class="hint" style="margin-top:0">Lee tus calendarios de Guardia, Atención Continuada, Chiquiguardia y Doblajes y los convierte en turnos para la nómina. CAP, Citas y Cursos se muestran en la agenda.</p>
+  ${rep?`<div class="kv" style="margin:10px 0"><div><span class="l">Turnos del calendario</span><span class="v">${s.n}</span></div>
+    <div><span class="l">Última pasada</span><span class="v" style="font-size:13px">${rep.added} nuevos · ${rep.updated} cambiados · ${rep.removed} quitados</span></div></div>`:""}
+  ${syncMsg?`<p class="${cls[syncMsg.tone]}" role="status">${esc(syncMsg.text)}</p>`:""}
+  ${avail?"":`<p class="hint">Abre la app desde claude.ai para conectar el calendario.</p>`}
+  <button class="cta" data-a="syncnow" data-nr="1"${syncing||!avail?" disabled":""}>${ic("cal")} ${syncing?"Sincronizando":"Sincronizar ahora"}</button>
+  ${syncMsg&&syncMsg.perm?`<button class="pill" data-a="syncperm" data-nr="1" style="width:100%;margin-top:10px">Gestionar permisos</button>`:""}
+  <div class="fld" style="margin-top:16px"><label for="sf">Sincronizar automáticamente</label>
+    <select id="sf" data-k="syncfreq">${opt("day","Cada día, al abrir la app")}${opt("week","Cada semana")}${opt("manual","Solo a mano")}</select></div>
+  <div class="fld"><label for="sx">Ignorar turnos cuyo título contenga</label>
+    <input id="sx" type="text" data-k="syncex" value="${esc(s.exclude)}" placeholder="Casernes, cambio" autocomplete="off"></div>
+  <div class="sub" style="margin:14px 0 4px">Agenda: calendarios que se muestran</div>
+  ${AGENDA_CALS.map(c=>`<div class="row"><span class="bub t-${c.tone}">${ic(c.icon)}</span><span class="tx"><span class="nm">${c.name}</span></span>
+    <button class="sw" data-a="synccal" data-v="${c.key}" aria-pressed="${!!s.cal[c.key]}" aria-label="Mostrar ${c.name}"></button></div>`).join("")}
+  <p class="hint">Los turnos que vienen del calendario se actualizan solos. Si borras uno, no vuelve a entrar; si lo cambias a mano, la siguiente sincronización lo corrige. La agenda no se guarda: se vuelve a leer al abrir.</p></div>`};
+
+/* ---------- agenda: turnos + eventos de CAP, Citas y Cursos ---------- */
+const padH=n=>String(n%24).padStart(2,"0");
+const shiftItems=()=>{const o=[];
+  for(let m=0;m<12;m++)(st.tur[m]||[]).forEach(x=>{if(x.ml!=null||x.mf!=null)return;const t=TIPO[x.t];
+    o.push({d:x.d,s:padH(x.s)+":00",e:padH(x.s+x.h)+":00",title:t[1],icon:t[0],tone:t[4],tag:"Turno"})});
+  return o};
+const agendaItems=()=>AGENDA.filter(e=>st.sync.cal[e.cal]).map(e=>{const c=AGENDA_CALS.find(q=>q.key===e.cal);
+  return{d:e.d,s:e.s,e:e.e,title:e.title,icon:c.icon,tone:c.tone,tag:c.name,loc:e.loc}});
+const allItems=()=>shiftItems().concat(agendaItems()).sort((a,b)=>(a.d+a.s).localeCompare(b.d+b.s));
+const itemRow=(it,showDay)=>`<div class="row"><span class="bub t-${it.tone}">${ic(it.icon)}</span><span class="tx"><span class="nm">${esc(it.title)}</span>
+  <span class="mt">${showDay?dayLab(it.d)+" · ":""}${it.s?it.s+(it.e?" a "+it.e:""):"Todo el día"} · ${it.tag}${it.loc?" · "+esc(it.loc):""}</span></span></div>`;
+
+R["c-agenda"]=()=>{const items=allItems(),day=selDay,end=iso(new Date(Date.now()+6*864e5));
+  const hoy=items.filter(i=>i.d===day),prox=items.filter(i=>i.d>=TODAY&&i.d<=end);
+  const legend=`<div class="chips" style="margin:0 0 12px">${AGENDA_CALS.filter(c=>st.sync.cal[c.key]).map(c=>
+    `<span class="chip t-${c.tone}" style="cursor:default;padding:4px 10px"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ti)"></i>${c.name}</span>`).join("")}</div>`;
+  return band("mint","cal","Agenda",fmtD(day))+`<div class="body">${AGENDA.length?legend:""}<div class="sub" style="margin:0 0 2px">${dayLab(day)}</div>`+
+    (hoy.length?hoy.map(i=>itemRow(i,false)).join(""):`<p class="hint" style="margin-top:0">Nada este día.</p>`)+
+    `<div class="sub" style="margin:16px 0 2px">Próximos 7 días</div>`+
+    (prox.length?prox.map(i=>itemRow(i,true)).join(""):`<p class="hint" style="margin-top:0">${AGENDA.length?"Nada en los próximos días.":"Sincroniza para ver aquí tus citas y cursos."}</p>`)+`</div>`};
+
+/* puntitos de color en el calendario: un día con eventos de agenda */
+DAYMARKS.push(id=>{const ev=AGENDA.filter(e=>e.d===id&&st.sync.cal[e.cal]);if(!ev.length)return "";
+  const tones=[...new Set(ev.map(e=>AGENDA_CALS.find(c=>c.key===e.cal).tone))].slice(0,3);
+  return `<span class="evd">${tones.map(t=>`<i class="t-${t}"></i>`).join("")}</span>`});
+
+/* ---------- sincronizar ---------- */
+async function runSync(){
+  if(syncing)return;syncing=true;syncMsg=null;refresh();
+  try{
+    const r=await syncShifts();queue();
+    let txt="Sincronizado.";
+    if(r.rep.adopted)txt+=` ${r.rep.adopted} turnos que ya tenías se han enlazado con el calendario.`;
+    if(r.missing.length)txt+=` No encuentro el calendario: ${r.missing.join(", ")}.`;
+    const a=await loadAgenda();
+    syncMsg={tone:(r.missing.length||a.errs.length)?"yel":"mint",text:txt+(a.errs.length?" Agenda: "+a.errs[0]:" Agenda: "+a.n+" eventos.")};
+    toast("Calendario sincronizado","mint");
+  }catch(e){syncMsg={tone:"red",text:gcalErrorText(e),perm:needsPermission(e)};toast("No se pudo sincronizar","red")}
+  syncing=false;refresh()}
+async function refreshAgenda(){
+  try{const r=await loadAgenda();if(r.errs.length)syncMsg={tone:"yel",text:"Agenda: "+r.errs[0]}}
+  catch(e){syncMsg={tone:"red",text:gcalErrorText(e),perm:needsPermission(e)}}
+  refresh()}
+
+Object.assign(I,{
+  syncfreq:t=>{st.sync.freq=t.value},
+  syncex:t=>{st.sync.exclude=t.value}
+});
+Object.assign(A,{
+  syncnow:()=>{runSync()},
+  syncperm:()=>{if(typeof claude==="undefined")return;
+    claude.use("permissions").then(p=>p&&p.manage()).catch(()=>{}).then(()=>{syncMsg=null;refresh()})},
+  synccal:b=>{const k=b.dataset.v;st.sync.cal[k]=!st.sync.cal[k];
+    if(st.sync.cal[k])refreshAgenda();else AGENDA=AGENDA.filter(e=>e.cal!==k)}
+});
+
+/* ---------- automático al abrir ----------
+   Nunca pide permiso al abrir: la primera vez es con un toque en "Sincronizar ahora".
+   Ya concedido: turnos cada día o cada semana según el ajuste; la agenda se lee siempre (no se guarda). */
+const syncDue=()=>{const s=st.sync;if(s.freq==="manual")return false;
+  return Date.now()-(s.last||0)>(s.freq==="day"?20*36e5:7*864e5)};
+onReady(async()=>{
+  if(typeof claude==="undefined")return;
+  if(!(await getMcp()))return;
+  let perm="unavailable";
+  try{const p=await claude.use("permissions");if(p)perm=await p.state("mcp:"+GCAL)}catch(e){}
+  if(perm!=="granted")return;
+  if(syncDue())await runSync();else await refreshAgenda()});
+/* ===== js: 57-tema.js ===== */
+/* Apariencia: Sistema (sigue al iPhone, valor por defecto), Claro u Oscuro.
+   Es un ajuste DE ESTE DISPOSITIVO: se guarda al instante en localStorage (no en la base de datos), así que tu iPhone
+   puede ir en Sistema y el ordenador en Oscuro. "Sistema" = sin atributo data-theme: manda prefers-color-scheme
+   (00-tokens.css). Claro/Oscuro lo fuerzan. */
+addCard("ajustes",{id:"c-theme",tone:"yel"},null);
+const THEMES=[["auto","Sistema"],["light","Claro"],["dark","Oscuro"]];
+const readTheme=()=>{try{const v=localStorage.getItem("kakebo-theme");return v==="light"||v==="dark"?v:"auto"}catch(e){return "auto"}};
+const saveTheme=v=>{try{localStorage.setItem("kakebo-theme",v)}catch(e){}};
+function applyTheme(v){
+  const r=document.documentElement;
+  if(v==="light"||v==="dark"){r.setAttribute("data-theme",v);r.style.colorScheme=v}
+  else{r.removeAttribute("data-theme");r.style.colorScheme=""}}
+let theme=readTheme();
+applyTheme(theme);                                   /* ya, antes de pintar */
+
+const systemDark=()=>!!(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+R["c-theme"]=()=>{const sys=systemDark()?"oscuro":"claro";
+  return band("yel","sun","Apariencia")+`<div class="body"><div class="seg">`+THEMES.map(([v,l])=>
+    `<button data-a="theme" data-v="${v}" aria-pressed="${theme===v}">${l}</button>`).join("")+`</div>
+  ${theme==="auto"?`<p class="hint">Sigue al sistema: ahora mismo es ${sys}. Cambia solo cuando cambia tu iPhone, por ejemplo al anochecer si tienes la apariencia automática.</p>`:""}</div>`};
+Object.assign(A,{theme:b=>{theme=b.dataset.v;saveTheme(theme);applyTheme(theme)}});
+/* si el sistema cambia mientras ves los ajustes, se actualiza la frase de arriba */
+try{const mq=matchMedia("(prefers-color-scheme: dark)"),f=()=>{if(tab==="ajustes")refresh()};
+  mq.addEventListener?mq.addEventListener("change",f):mq.addListener&&mq.addListener(f)}catch(e){}
+/* ===== js: 58-copia.js ===== */
+/* Copia de seguridad: ver tus datos como texto y restaurarlos pegando ese texto.
+   Sirve para pasar tus datos de un sitio a otro (artefacto de claude.ai, web de GitHub, otro móvil). */
+addCard("ajustes",{id:"c-copia",tone:"lav"},"c-s7");     /* después de Aviso; Google Calendar sigue al final */
+
+let cpArm=false, cpMsg=null;
+R["c-copia"]=()=>band("lav","doc","Copia de seguridad")+`<div class="body">
+  <p class="hint" style="margin-top:0">Tus datos como texto. Cópialo para guardarlo o para llevarlo a otra versión de la app; pega aquí una copia para restaurarla.</p>
+  <div class="fld" style="margin-top:12px"><label for="cpTxt">Texto de la copia</label>
+    <textarea id="cpTxt" rows="4" data-k="cptxt" data-nr="1" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Pulsa Mostrar copia, o pega aquí una copia"></textarea></div>
+  ${cpMsg?`<p class="${cpMsg.tone==="red"?"err":"okmsg"}" role="status">${esc(cpMsg.text)}</p>`:""}
+  <button class="cta" data-a="cpshow" data-nr="1">${ic("doc")} Mostrar y copiar mi copia</button>
+  <button class="pill" data-a="cprest" data-nr="1" style="width:100%;margin-top:10px">${cpArm?"Pulsa otra vez: sustituye tus datos actuales":"Restaurar desde el texto"}</button></div>`;
+
+const cpSet=(tone,text)=>{cpMsg={tone,text};cpArm=false;const keep=($("cpTxt")||{}).value||"";refresh();const t=$("cpTxt");if(t&&keep)t.value=keep};
+Object.assign(I,{cptxt:()=>{cpArm=false}});
+Object.assign(A,{
+  cpshow:()=>{const txt=JSON.stringify(st);cpMsg={tone:"mint",text:"Copia lista ("+Math.round(txt.length/1024)+" KB)."};cpArm=false;refresh();
+    const t=$("cpTxt");if(!t)return;t.value=txt;t.focus();t.select();
+    try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>toast("Copiado")).catch(()=>{})}catch(e){}},
+  cprest:()=>{const t=$("cpTxt"),raw=t?t.value.trim():"";
+    if(!raw)return cpSet("red","Pega primero el texto de una copia.");
+    let o=null;try{o=JSON.parse(raw)}catch(e){}
+    if(!o||typeof o!=="object"||!Array.isArray(o.cob)||!o.diary)return cpSet("red","Ese texto no parece una copia de este presupuesto.");
+    if(!cpArm){cpArm=true;const keep=raw;refresh();const t2=$("cpTxt");if(t2)t2.value=keep;return}
+    st=migrate(o);save();cpMsg={tone:"mint",text:"Copia restaurada."};cpArm=false;refresh();toast("Copia restaurada")}
+});
+/* ===== js: 59-github.js ===== */
+/* Solo en la versión de GitHub Pages: guarda tu presupuesto en tu repo privado (presupuesto.json) y lo lee al abrir.
+   El token vive solo en este dispositivo. Si dos dispositivos cambian a la vez, gana el cambio más reciente. */
+const GHK="kakebo.gh", GHAT="kakebo.ghAt", GHF="presupuesto.json";
+let gh=null;try{gh=JSON.parse(localStorage.getItem(GHK)||"null")}catch(e){}
+let ghSha=null, ghTimer=null, ghBusy=false, ghAgain=false, ghMsg=null, ghLast=0, ghForm={repo:gh?gh.repo:"",tk:""};
+
+const ghAt=()=>+localStorage.getItem(GHAT)||0;
+const ghUrl=()=>"https://api.github.com/repos/"+gh.repo+"/contents/"+GHF;
+const ghH=()=>({Authorization:"Bearer "+gh.tk,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"});
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+const unb64=s=>decodeURIComponent(escape(atob(s.replace(/\s/g,""))));
+const ghErr=(status)=>new Error(status===401?"El token no es válido o ha caducado.":status===403?"GitHub rechaza el acceso (permisos del token o límite de uso).":
+  status===404?"No encuentro el repo de datos. Revisa el nombre y los permisos del token.":"GitHub ha respondido "+status+".");
+const ghStatus=t=>{const el=$("sync");if(el)el.textContent="2026 · "+t};
+
+async function ghGet(){
+  const r=await fetch(ghUrl()+"?t="+Date.now(),{headers:ghH(),cache:"no-store"});
+  if(r.status===404){ghSha=null;return null}
+  if(!r.ok)throw ghErr(r.status);
+  const j=await r.json();ghSha=j.sha;
+  return JSON.parse(unb64(j.content))}
+
+function ghAdopt(r){
+  st=migrate(r.st);try{localStorage.setItem("kakebo2026",JSON.stringify(st))}catch(e){}
+  localStorage.setItem(GHAT,String(r.at));refresh()}
+
+async function ghPut(at){
+  const mk=()=>({method:"PUT",headers:ghH(),body:JSON.stringify({message:"kakebo "+new Date(at).toISOString(),
+    content:b64(JSON.stringify({at,st})),...(ghSha?{sha:ghSha}:{})})});
+  let r=await fetch(ghUrl(),mk());
+  if(r.status===409||r.status===422){                 /* alguien (otro dispositivo) escribió antes: se mira qué es más reciente */
+    const x=await ghGet();
+    if(x&&x.at>at){ghAdopt(x);return "remoto"}
+    r=await fetch(ghUrl(),mk())}
+  if(!r.ok)throw ghErr(r.status);
+  ghSha=(await r.json()).content.sha;return "subido"}
+
+async function ghSync(){
+  if(!gh)return;
+  if(ghBusy){ghAgain=true;return}
+  ghBusy=true;ghStatus("sincronizando");
+  try{
+    const r=await ghGet(),la=ghAt();let how;
+    if(r&&r.at>la){ghAdopt(r);how="remoto"}
+    else if(!r||la>r.at){how=await ghPut(la||Date.now())}
+    else how="igual";
+    ghMsg={tone:"mint",text:how==="remoto"?"Datos cargados desde GitHub.":how==="subido"?"Cambios guardados en GitHub.":"Todo al día."};
+    ghLast=Date.now();ghStatus("guardado en GitHub")}
+  catch(e){ghMsg={tone:"red",text:e.message||String(e)};ghStatus("sin conexión con GitHub")}
+  ghBusy=false;
+  if(ghAgain){ghAgain=false;ghSync();return}
+  if(tab==="ajustes")refresh()}
+
+/* cada guardado local programa una subida a GitHub (con pausa, para no subir en cada tecla) */
+onReady(()=>{
+  const base=save;
+  save=()=>{base();localStorage.setItem(GHAT,String(Date.now()));if(gh){clearTimeout(ghTimer);ghTimer=setTimeout(()=>{ghTimer=null;ghSync()},1500)}};
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&ghTimer){clearTimeout(ghTimer);ghTimer=null;ghSync()}});
+  if(gh)ghSync()});
+
+/* ---------- pantalla ---------- */
+addCard("ajustes",{id:"c-gh",tone:"lav"},"c-theme");
+
+R["c-gh"]=()=>{
+  const tag=!gh?"sin conectar":ghBusy?"sincronizando":ghLast?timeAgo(ghLast):"conectado";
+  const msg=ghMsg?`<p class="${ghMsg.tone==="red"?"err":"okmsg"}" role="status">${esc(ghMsg.text)}</p>`:"";
+  return band("lav","cloud","Copia en GitHub",tag)+`<div class="body">`+(gh?
+    `<div class="kv"><div><span class="l">Repo de datos</span><span class="v" style="font-size:13px">${esc(gh.repo)}</span></div></div>${msg}
+     <button class="cta" data-a="ghnow" data-nr="1"${ghBusy?" disabled":""}>${ic("cloud")} ${ghBusy?"Sincronizando":"Sincronizar ahora"}</button>
+     <button class="pill" data-a="ghoff" data-nr="1" style="width:100%;margin-top:10px">Desconectar este dispositivo</button>
+     <p class="hint">Tus datos se guardan solos en tu repo privado unos segundos después de cada cambio. Desconectar quita el token de este dispositivo; no borra nada en GitHub.</p>`:
+    `<div class="fld"><label for="ghR">Repo de datos</label><input id="ghR" type="text" data-k="ghrepo" data-nr="1" value="${esc(ghForm.repo)}" placeholder="tuusuario/kakebo-datos" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
+     <div class="fld"><label for="ghT">Token de GitHub</label><input id="ghT" type="password" data-k="ghtk" data-nr="1" placeholder="github_pat_..." autocapitalize="off" autocomplete="off" spellcheck="false"></div>
+     ${msg}<button class="cta" data-a="ghon" data-nr="1">${ic("cloud")} Conectar</button>`)+`</div>`};
+
+/* el calendario de claude.ai no existe fuera de claude.ai */
+R["c-sync"]=()=>band("blue","cal","Google Calendar")+`<div class="body"><p class="hint" style="margin-top:0">Esta versión no lee Google Calendar. Añade los turnos a mano en la pestaña Turnos.</p></div>`;
+
+Object.assign(I,{ghrepo:t=>{ghForm.repo=t.value},ghtk:t=>{ghForm.tk=t.value}});
+Object.assign(A,{
+  ghnow:()=>{ghMsg=null;ghSync();refresh()},
+  ghoff:()=>{try{localStorage.removeItem(GHK)}catch(e){}gh=null;ghMsg=null;ghStatus("solo en este dispositivo");refresh()},
+  ghon:async()=>{
+    const repo=ghForm.repo.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\.git$/,"").replace(/\/$/,""),tk=ghForm.tk.trim();
+    const bad=t=>{ghMsg={tone:"red",text:t};refresh();const r=$("ghR");if(r)r.value=ghForm.repo};
+    if(!/^[\w.-]+\/[\w.-]+$/.test(repo))return bad("Escribe el repo como usuario/repo.");
+    if(!tk)return bad("Pega tu token de GitHub.");
+    try{
+      const r=await fetch("https://api.github.com/repos/"+repo,{headers:{Authorization:"Bearer "+tk,Accept:"application/vnd.github+json"},cache:"no-store"});
+      if(!r.ok)return bad(r.status===401?"El token no es válido o ha caducado.":"No encuentro ese repo. Revisa el nombre y los permisos del token.");
+      const j=await r.json();
+      if(j.private===false)return bad("Ese repo es PÚBLICO: cualquiera vería tu presupuesto. Hazlo privado en GitHub.");
+      if(j.permissions&&j.permissions.push===false)return bad("El token solo puede leer: necesita permiso de escritura en Contenido.")}
+    catch(e){return bad("No he podido conectar con GitHub: "+(e.message||e))}
+    gh={repo,tk};localStorage.setItem(GHK,JSON.stringify(gh));ghForm.tk="";ghMsg=null;refresh();ghSync()}
+});
+/* ===== js: 60-asistente.js ===== */
+/* Asistente "Antes de comprar: ¿ahorro o me lo gasto?" (hoja inferior). Independiente de las pestañas. */
+let wiz=null;
+const TREE={q1:["¿Lo necesitas de verdad o es un capricho?",[["Lo necesito","n1"],["Es un capricho","c1"]]],
+ n1:["¿Hay una opción más barata que te sirva?",[["Sí","n2"],["No","n3"]]],
+ n2:["¿Te conformarías con la más barata?",[["Sí","rBarata"],["No","n3"]]],
+ n3:["¿Es la mejor opción en calidad y precio?",[["Sí","rCompra"],["No","rPiensa"]]],
+ c1:["¿Te seguirá apeteciendo dentro de una semana?",[["Sí","c2"],["No","rEspera"]]],
+ c2:["¿Es para ti o es un regalo?",[["Es para mí","rOcio"],["Es un regalo","rRegalo"]]]};
+const remTot=()=>presup(sel)-gastoMes(sel);
+function wizInfo(){const c=wiz.c,r=catRem(sel,c),t=remTot(),a=wiz.amt;
+  return `En <b>${CAT[c].n}</b> te quedan <b>${eur(r)}</b> este mes y en total <b>${eur(t)}</b>.`+
+    (a>0?`<br>${a<=r+0.005?"Cabe en este sobre.":"No cabe: te pasarías "+eur(a-r)+" en "+CAT[c].n+"."}`:"")}
+function wizResult(id){const a=wiz.amt,c=id==="rRegalo"?"extra":wiz.c,r=catRem(sel,c),fits=a<=r+0.005,t=remTot();
+  const X={rBarata:["mint","check","Compra la barata","Te cumple y tu bolsillo lo agradece."],
+   rCompra:["mint","check","Compra, está justificado","Lo necesitas y es la mejor relación calidad y precio."],
+   rPiensa:["yel","spark","Piénsalo dos veces","Lo necesitas, pero no parece la mejor opción. Compara un poco más antes de pagar."],
+   rEspera:["red","moon","Espera una semana","Si dentro de siete días ya no te apetece, ese dinero estaba mejor ahorrado."],
+   rOcio:fits?["mint","check","Cómpralo sin culpa","Cabe en tu sobre de "+CAT[c].n+"."]:["red","x","Hoy no toca","No cabe en tu sobre de "+CAT[c].n+": te pasarías "+eur(a-r)+"."],
+   rRegalo:fits?["mint","gift","Regala tranquilo","Cabe en tu sobre de Extras."]:["yel","gift","Mira el sobre de Extras","Te pasarías "+eur(a-r)+" en Extras. Puedes bajar el presupuesto del regalo."]}[id];
+  const warn=(a>0&&a>t+0.005&&X[0]!=="red")?`<p style="margin-top:10px" class="neg"><b>Ojo:</b> supera lo que te queda del mes entero (${eur(t)}).</p>`:"";
+  return `<div class="res-box t-${X[0]}">${ic(X[1])}<h4>${X[2]}</h4><p>${X[3]}</p>${warn}</div>
+   <button class="cta" data-a="wclose" data-nr="1">Cerrar</button><button class="pill" data-a="wreset" data-nr="1" style="width:100%;margin-top:10px">Empezar de nuevo</button>`}
+function renderSheet(){
+  const el=$("shin");$("sheet").hidden=!wiz;if(!wiz)return;
+  if(wiz.step==="amt"){
+    el.innerHTML=`<h3>Antes de comprar</h3><p class="hint" style="margin-top:0">¿Ahorro o me lo gasto? Dos minutos de calma.</p>
+    <div class="bigin small"><input id="wAmt" data-k="wamt" data-nr="1" type="text" inputmode="decimal" autocomplete="off" placeholder="Importe" value="${wiz.amt?fmtIn(wiz.amt):""}"><span>€</span></div>
+    <div class="chips">${CK.map(k=>`<button class="chip t-${CAT[k].t}${k===wiz.c?" on":""}" data-a="wcat" data-nr="1" data-v="${k}">${ic(CAT[k].ic)}${CAT[k].n}</button>`).join("")}</div>
+    <p class="hint" id="wInfo">${wizInfo()}</p><button class="cta" data-a="wnext" data-nr="1">Siguiente</button>`;
+  }else if(TREE[wiz.step]){const[q,o]=TREE[wiz.step];
+    el.innerHTML=`<p class="shq">${q}</p>${o.map(([t,n])=>`<button class="opt" data-a="wpick" data-nr="1" data-v="${n}">${t}</button>`).join("")}
+    <button class="pill" data-a="wback" data-nr="1" style="margin-top:6px">${ic("back")} Atrás</button>`;
+  }else el.innerHTML=wizResult(wiz.step)}
+
+Object.assign(I,{wamt:t=>{wiz.amt=Math.max(0,num(t.value));$("wInfo").innerHTML=wizInfo()}});
+Object.assign(A,{
+  wopen:()=>{wiz={step:"amt",amt:0,c:"ocio",hist:[]};renderSheet()},
+  wclose:()=>{wiz=null;renderSheet()},
+  wcat:b=>{wiz.c=b.dataset.v;renderSheet()},
+  wnext:()=>{wiz.hist=["amt"];wiz.step="q1";renderSheet()},
+  wpick:b=>{wiz.hist.push(wiz.step);wiz.step=b.dataset.v;renderSheet()},
+  wback:()=>{wiz.step=wiz.hist.pop()||"amt";renderSheet()},
+  wreset:()=>{wiz={step:"amt",amt:wiz.amt,c:wiz.c,hist:[]};renderSheet()}
+});
+/* ===== js: 90-arranque.js ===== */
+/* Arranque: monta la estructura, pinta y carga los datos guardados. */
+mountTabs();
+$("logo").innerHTML=logoSVG();
+refresh();
+loadState().then(()=>HOOKS.ready.forEach(f=>{try{f()}catch(e){reportError(e)}}));
+</script>
+<script>
+/* Arranque de la web en GitHub Pages.
+   El código de esta página es público y NO lleva tus datos personales. Esos datos (datos-personales.js) viven en tu repo
+   privado y se descargan con tu token; se guardan en este dispositivo para que la app abra al instante y sin conexión. */
+(function(){
+  var KEY="kakebo.gh", PERS="kakebo.pers", gh=null;
+  try{gh=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+  var appEl=document.getElementById("appjs"), bootEl=document.getElementById("boot");
+  function run(pers){var s=document.createElement("script");s.textContent=appEl.textContent.replace("/*@@PERSONAL@@*/",function(){return pers});document.head.appendChild(s);bootEl.hidden=true}
+  function hdr(tk,raw){return{Authorization:"Bearer "+tk,Accept:raw?"application/vnd.github.raw+json":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}}
+  function fail(status,what){return new Error(status===401?"El token no es válido o ha caducado.":status===403?"GitHub rechaza el acceso (permisos del token o límite de uso).":status===404?what:"GitHub ha respondido "+status+".")}
+  async function checkRepo(repo,tk){
+    var r=await fetch("https://api.github.com/repos/"+repo,{headers:hdr(tk),cache:"no-store"});
+    if(!r.ok)throw fail(r.status,"No encuentro ese repositorio. Revisa el nombre (usuario/repo) y que el token tenga acceso a él.");
+    var j=await r.json();
+    if(j.private===false)throw new Error("Ese repositorio es PÚBLICO: cualquiera vería tu presupuesto. Hazlo privado en GitHub y vuelve a intentarlo.");
+    if(j.permissions&&j.permissions.push===false)throw new Error("El token solo puede leer. Necesita permiso de escritura en Contenido.")}
+  async function fetchPers(g){
+    var r=await fetch("https://api.github.com/repos/"+g.repo+"/contents/datos-personales.js?t="+Date.now(),{headers:hdr(g.tk,true),cache:"no-store"});
+    if(!r.ok)throw fail(r.status,"No encuentro datos-personales.js en ese repo. Súbelo a la raíz de tu repo de datos (paso 4 de la guía).");
+    return r.text()}
+  function form(msg,repo){
+    bootEl.hidden=false;
+    bootEl.innerHTML='<div class="card t-mint"><div class="band"><h2>Conectar tus datos</h2></div><div class="body">'+
+      '<p class="hint" style="margin-top:0">Esta web no guarda tus números. Se leen de tu repo privado de GitHub con un token que se queda solo en este dispositivo.</p>'+
+      '<div class="fld" style="margin-top:14px"><label for="bRepo">Repo de datos</label><input id="bRepo" type="text" placeholder="tuusuario/kakebo-datos" autocapitalize="off" autocomplete="off" spellcheck="false"></div>'+
+      '<div class="fld"><label for="bTk">Token de GitHub</label><input id="bTk" type="password" placeholder="github_pat_..." autocapitalize="off" autocomplete="off" spellcheck="false"></div>'+
+      '<p class="err" id="bErr" role="status"></p><button class="cta" id="bGo">Conectar</button></div></div>';
+    document.getElementById("bRepo").value=repo||"";document.getElementById("bErr").textContent=msg||"";
+    document.getElementById("bGo").addEventListener("click",connect)}
+  async function connect(){
+    var repo=document.getElementById("bRepo").value.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\.git$/,"").replace(/\/$/,""),
+        tk=document.getElementById("bTk").value.trim(), err=document.getElementById("bErr"), go=document.getElementById("bGo");
+    if(!/^[\w.-]+\/[\w.-]+$/.test(repo)){err.textContent="Escribe el repo como usuario/repo.";return}
+    if(!tk){err.textContent="Pega tu token de GitHub.";return}
+    go.disabled=true;go.textContent="Comprobando";err.textContent="";
+    try{await checkRepo(repo,tk);var g={repo:repo,tk:tk},t=await fetchPers(g);
+      localStorage.setItem(KEY,JSON.stringify(g));localStorage.setItem(PERS,t);gh=g;run(t)}
+    catch(e){err.textContent=e.message||String(e);go.disabled=false;go.textContent="Conectar"}}
+  var cached=null;try{cached=localStorage.getItem(PERS)}catch(e){}
+  if(cached){run(cached);
+    if(gh&&navigator.onLine)fetchPers(gh).then(function(t){if(t!==cached)localStorage.setItem(PERS,t)}).catch(function(){})}
+  else if(!gh)form("");
+  else fetchPers(gh).then(function(t){localStorage.setItem(PERS,t);run(t)}).catch(function(e){form(e.message,gh.repo)});
+  if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+})();
+</script>
+</body>
+</html>
