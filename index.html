@@ -884,7 +884,7 @@ async function loadAgenda(){
      I.clave / C.clave                                    -> handlers de input / change (data-k)
      A.accion                                             -> handlers de clic (data-a)
      onMonthChange((mes,fecha)=>...)                      -> reaccionar al cambio de mes */
-let sel=new Date().getMonth(), tab="inicio";
+let sel=new Date().getMonth(), tab="diario";   /* al abrir la app: directamente «Añadir gasto» */
 const TABS=[], R={}, I={}, C={}, A={}, HOOKS={month:[],ready:[]};
 const DAYMARKS=[];                                   /* (fechaISO)=>html : marcas extra en las celdas del calendario */
 const onReady=fn=>HOOKS.ready.push(fn);              /* se ejecuta cuando ya están cargados los datos guardados */
